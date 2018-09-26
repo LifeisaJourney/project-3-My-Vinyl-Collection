@@ -33,7 +33,7 @@ app.post('/api/register', async(req,res) => {
     return;
   }
 
-  const passwordDigest = bcrypt.hash(password, 12);
+  const passwordDigest = await bcrypt.hash(password, 12);
 
   const newUser = await User.create({
     username: username,
@@ -44,6 +44,21 @@ app.post('/api/register', async(req,res) => {
   res.json({token: token});
 });
 
+app.get('api/current-user', async(req,res) => {
+  const token = JSON.parse(req.headers['jwt-token']); 
+  let tokenData;
+  try {
+    tokenData = jwt.verify(token, jwtSecret);
+  } catch(e) {
+    console.log(e);
+  }
+  const user = await User.findOne({
+    where: {
+      id: tokenData.userId
+    }
+  });
+  res.json(user);
+});
 
 
 
