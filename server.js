@@ -16,13 +16,33 @@ app.get('/api/albums', async(req,res) => {
   res.json(allAlbums);
 });
 
+app.post('/api/register', async(req,res) => {
+  const {username, password} = req.body;
+  if(!username || !password){
+    res.status(401).json({error: 'Username and password are required for registration'});
+    return;
+  }
 
+  const existingUser = await User.findOne({
+    where: {
+      username: username
+    }
+  });
+  if (existingUser){
+    res.status(409).json({error: 'This username already exists'});
+    return;
+  }
 
+  const passwordDigest = bcrypt.hash(password, 12);
 
+  const newUser = await User.create({
+    username: username,
+    password: passwordDigest
+  });
 
-
-
-
+  const token = jwt.sign({userId:newUser.id}, jwtSecret);
+  res.json({token: token});
+});
 
 
 
