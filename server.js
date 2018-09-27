@@ -71,7 +71,7 @@ app.post('/api/login', async (req, res) => {
 });
 
 app.get('/api/current-user', async (req, res) => {
-  const token = JSON.parse(req.headers['jwt-token']);
+  const token = req.headers['jwt-token'];
   let tokenData;
   try {
     tokenData = jwt.verify(token, jwtSecret);
@@ -88,7 +88,7 @@ app.get('/api/current-user', async (req, res) => {
 
 app.post('/api/current-user/albums', async (req, res) => {
   const { albumId } = req.body;
-  const token = JSON.parse(req.headers['jwt-token']);
+  const token = req.headers['jwt-token'];
   let tokenData;
   try {
     tokenData = jwt.verify(token, jwtSecret);
@@ -109,17 +109,26 @@ app.post('/api/current-user/albums', async (req, res) => {
   res.sendStatus(201);
 });
 
-
-
-
 app.get('/api/current-user/albums', async (req, res) => {
+  const token = req.headers['jwt-token'];
+  let tokenData;
+  try {
+    tokenData = jwt.verify(token, jwtSecret);
+  } catch (e) {
+    console.log(e);
+  }
+  const user = await User.findOne({
+    where: {
+      id: tokenData.userId
+    }
+  });
   const userAlbums = await Album.findAll({
     include: [
       {
         model: User,
         where: {
-          id: 
-        }
+          id: user.id
+        },
         attributes: []
       },
     ],
