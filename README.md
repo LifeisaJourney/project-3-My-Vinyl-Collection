@@ -1,3 +1,33 @@
+![Vinyl Picture](https://eflip.co/wp-content/uploads/2016/09/vinyl-white-512.png)
+
+# **My Vinyl Collection**
+    This is a website created for vinyl collectors. With the ever diminishing existence of vinyls in the market, this is the place for collectors to showoff their collections to other users. 
+
+## MoSCoW Method
+![MoSCoW](https://docs.google.com/document/d/18vpU6vpkyNXcM9MnnQOrnxO2-OS6171CWESyKBJev9c/edit?ts=5babfb5f) Method for determining what features we MUST, SHOULD, COULD, and WON'T have on our website.
+
+## Wireframes
+![Wireframes](https://share.proto.io/K8SK9B/) 
+The UI of the pages to scroll through in the website.
+
+## Schema Model
+![Schema](https://imgur.com/fUJnOYh.png)
+This is the schema of our database for models.js 
+
+## Initial Proposal
+![Proposal](https://docs.google.com/document/d/1CC1btQAjxgK16OXpTv4SIGTzybuMWmGtEuKk9rghmOY/edit) Initial proposal for project.
+
+![Thought Process](https://imgur.com/a/5Z0Ddbw.png)
+The thought process behind the proposal
+
+
+
+
+
+
+
+
+
 # Full stack app boilerplate
 
 This is boilerplate for a full-stack app.
