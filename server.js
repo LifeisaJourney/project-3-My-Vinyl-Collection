@@ -1,9 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const { Users, Albums } = require('./models')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const {User, Album, UserAlbums} = require('./models');
 const PORT = process.env.PORT || 5678;
+
 
 const app = express();
 
