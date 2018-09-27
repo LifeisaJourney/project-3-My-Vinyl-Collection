@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import "./style.css";
 import Login from '../Login';
 import Register from '../Register';
-import User from "../User"
+import User from "../User";
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 class App extends Component {
   constructor(props) {
@@ -33,8 +34,11 @@ class App extends Component {
           />
         </div>
         <div className="register-container">
-          <Register />
+          <h3>New to My Vinyl Collection? Create your profile and start feeding it</h3>
+          <button onClick={this.goToPage} page='register-view'>Register</button>
         </div>}
+      {this.state.page === 'register-view' &&
+      <Register />}
       {this.state.page === 'user-view' &&
         <div className="user-view">
           <User />
