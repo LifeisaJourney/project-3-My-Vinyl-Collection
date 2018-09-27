@@ -22,13 +22,13 @@ export default class Register extends Component {
     });
     const response = await fetch('/api/register', {
       method: 'POST',
-      body: requestBody, 
-      headers: { 
+      body: requestBody,
+      headers: {
         'Content-Type': 'application/json'
       }
     });
     const responseBody = await response.json();
-    if (response.status===409) {
+    if (response.status === 409) {
       this.setState({
         errorMessage: responseBody.message
       });
@@ -47,29 +47,28 @@ export default class Register extends Component {
     evt.preventDefault();
   }
 
-
   render() {
     return (
       <div>
         <form onSubmit={this.onFormSubmit}>
           <label>Name: </label>
-          <input type='text' placeholder='Name' onChange={this.onInputChange} name='Name' value={this.state.name}>
+          <input type='text' placeholder='Name' onChange={this.onInputChange} name='name' value={this.state.name}>
           </input>
           <label>User name: </label>
-          <input type='text' placeholder='User name' onChange={this.onInputChange} name='User name' value={this.state.username}>
+          <input type='text' placeholder='User name' onChange={this.onInputChange} name='username' value={this.state.username}>
           </input>
           <label>Password: </label>
-          <input type='password' placeholder='Password' onChange={this.onInputChange} name='Password' value={this.state.password}> 
+          <input type='password' placeholder='password' onChange={this.onInputChange} name='password' value={this.state.password}>
           </input>
           <label>Profile Picture </label>
-          <input type='file' onChange={this.onInputChange} name='Avatar' accept='.png, .jpg, .jpeg' value={this.state.pictureSrc}>
+          <input type='file' onChange={this.onInputChange} name='pictureSrc' accept='.png, .jpg, .jpeg' value={this.state.pictureSrc}>
           </input>
           <label>City: </label>
-          <input type='text' placeholder='City' onChange={this.onInputChange} name='City' value={this.state.city}>
+          <input type='text' placeholder='City' onChange={this.onInputChange} name='city' value={this.state.city}>
           </input>
           <button type='button' onClick={this.register}>
-           Register 
-          </button>   
+            Register
+          </button>
         </form>
       </div>
     )
