@@ -17,7 +17,7 @@ This is the schema of our database for models.js
 ## Initial Proposal
 ![Proposal](https://docs.google.com/document/d/1CC1btQAjxgK16OXpTv4SIGTzybuMWmGtEuKk9rghmOY/edit) Initial proposal for project.
 
-![Thought Process](https://imgur.com/a/5Z0Ddbw.png)
+![Thought Process](https://i.imgur.com/EARH2q8.png)
 The thought process behind the proposal
 
 
