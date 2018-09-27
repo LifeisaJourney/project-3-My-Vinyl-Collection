@@ -7,9 +7,10 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 class App extends Component {
   constructor(props) {
     super(props)
+    const token = localStorage.getItem('user-jwt');
     this.state = {
       page: 'home',
-      isLoggedIn: false,
+      isLoggedIn: token || false,
       username: '',
       password: ''
     }
