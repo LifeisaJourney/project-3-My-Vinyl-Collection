@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./style.css";
-import Login from '../Login';
-import Register from '../Register';
-import User from "../User";
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+// import Login from '../Login';
+// import Register from '../Register';
+// import User from "../User";
+// import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 class App extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class App extends Component {
 
   render() {
     return (<div className="App">Hello World
-    {!this.state.isLoggedIn &&
+    {/* {!this.state.isLoggedIn &&
         <div className="login-container">
           <Login
           onLogIn={this.onLogIn}
@@ -42,7 +42,7 @@ class App extends Component {
       {this.state.page === 'user-view' &&
         <div className="user-view">
           <User />
-        </div>}
+        </div>} */}
     </div>
     );
   }

@@ -1,15 +1,15 @@
 const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize({
-  database: 'project-3',
+  database: 'project_3_db',
   dialect: 'postgres'
 });
 
 // Create models here
-const User = sequelize.define('users', {
+const User = sequelize.define('user', {
   name: Sequelize.TEXT,
-  userName: Sequelize.VARCHAR(50),
-  password: Sequelize.TEXT,
+  username: Sequelize.TEXT,
+  passwordDigest: { type: Sequelize.TEXT, unique: true },
   pictureSrc: Sequelize.TEXT,
   email: Sequelize.TEXT,
   city: Sequelize.TEXT

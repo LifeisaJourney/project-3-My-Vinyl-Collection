@@ -1,14 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { Users, Albums } = require('./models')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { User, Album, UserAlbums } = require('./models');
 const PORT = process.env.PORT || 5678;
+
 const app = express();
-const jwtSecret = 'secret189230';
 
 app.use(bodyParser.json());
+
+const jwtSecret = 'secret189230';
 
 app.get('/api/albums', async (req, res) => {
   const allAlbums = await Album.findAll({});
@@ -17,8 +18,9 @@ app.get('/api/albums', async (req, res) => {
 
 app.post('/api/register', async (req, res) => {
   const { username, password } = req.body;
+  console.log(username, password);
   if (!username || !password) {
-    res.status(401).json({ error: 'Username and password are required for registration' });
+    res.status(400).json({ error: 'Username and password are required for registration' });
     return;
   }
 
@@ -27,20 +29,45 @@ app.post('/api/register', async (req, res) => {
       username: username
     }
   });
+
   if (existingUser) {
-    res.status(409).json({ error: 'This username already exists' });
-    return;
-  }
+    res.status(409).json({ message: 'This username already exists' });
+  } else {
+    const passwordDigest = await bcrypt.hash(password, 12);
 
-  const passwordDigest = await bcrypt.hash(password, 12);
+    const newUser = await User.create({
+      username: username,
+      passwordDigest: passwordDigest
+    });
+  
+    const token = jwt.sign({ userId: newUser.id }, jwtSecret);
+    res.json({ token: token });
+  }  
+});
 
-  const newUser = await User.create({
-    username: username,
-    password: passwordDigest
+app.post('/api/login', async (req, res) => {
+  const { username, password } = req.body;
+  const user = await User.findOne({
+    where: {
+      username: username
+    }
   });
 
-  const token = jwt.sign({ userId: newUser.id }, jwtSecret);
-  res.json({ token: token });
+  if (!user) {
+    res.status(401).json({ error: 'Username or password invalid' });
+    return
+  }
+
+  const isPasswordCorrect = await bcrypt.compare(password, user.passwordDigest)
+
+  if (isPasswordCorrect) {
+    const token = jwt.sign({ userId: user.id }, jwtSecret);
+    res.json({ token: token });
+  } else {
+    res.status(401).json({ error: 'Username or password invalid' });
+    return
+  }
+
 });
 
 app.get('api/current-user', async (req, res) => {
