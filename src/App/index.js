@@ -8,7 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      page: 'user-view',
+      page: 'home',
       isLoggedIn: false,
       username: '',
       password: ''
@@ -68,7 +68,10 @@ class App extends Component {
             </div>
             }
           {this.state.page === 'register-view' &&
-            <Route path='/register' exact component={Register} />}
+            <Route path='/register' 
+            render={(props) => <Register {...props} userName={this.state.username} password={this.state.password} onLogin={this.onLogIn} />}
+            />
+          }
           {this.state.page === 'user-view' &&
             <div className="user-view">
               <Route path='/current-user' exact component={User} />
