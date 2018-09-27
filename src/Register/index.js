@@ -9,7 +9,7 @@ export default class Register extends Component {
       password: '',
       pictureSrc: '',
       city: '',
-      errorMessage: ''
+      message: ''
     }
   }
   register = async () => {
@@ -30,7 +30,7 @@ export default class Register extends Component {
     const responseBody = await response.json();
     if (response.status === 409) {
       this.setState({
-        errorMessage: responseBody.message
+        message: responseBody.message
       });
       return;
     }
