@@ -14,6 +14,8 @@ class App extends Component {
       password: ''
     }
   }
+
+  //test latter
   goToPage = page => {
     this.setState({
       page: page
@@ -24,19 +26,18 @@ class App extends Component {
       isLoggedIn: true,
     })
   }
-  handleChangeUsername = (event) => {
+  handleChange = (event) => {
     this.setState({
-      username: event.target.value
+      [event.target.name]: event.target.value
     })
   }
-  handleChangePassword = (event) => {
-    this.setState({
-      password: event.target.value
-    })
-  }
+  
 
   onSubmit = (event) => {
     event.preventDefault();
+    this.setState({
+      isLoggedIn: true
+    })
   }
 
 
@@ -53,15 +54,16 @@ class App extends Component {
                 <div className="form-container">
                   <form onSubmit={this.onSubmit}>
                     <label>User Name: </label>
-                    <input type="text" placeholder='user name' onChange={this.handleChangeUsername} username={this.state.username}></input>
+                    <input type="text" placeholder='user name' onChange={this.handleChange} name='username' value={this.state.username}></input>
                     <label>Password: </label>
-                    <input type="text" placeholder='password' onChange={this.handleChangePassword} password={this.state.password}></input>
+                    <input type="password" placeholder='password' onChange={this.handleChange} name='password' value={this.state.password}></input>
+                    <button type="button" onClick={this.onSubmit}>login</button>
                   </form>
                 </div>
               </div>
               <div className="register-container">
                 <h3>New to My Vinyl Collection? Create your profile and start feeding it</h3>
-                <button onClick={this.goToPage} page='register-view'>Register</button>
+                <button type="button" onClick={this.goToPage} page='register-view'>Register</button>
               </div>
             </div>
             }
