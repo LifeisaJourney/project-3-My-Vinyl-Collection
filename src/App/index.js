@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./style.css";
 import Register from '../Register';
 import User from "../User";
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 class App extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class App extends Component {
     }
   }
 
-  //test latter
+  //test later
   goToPage = page => {
     this.setState({
       page: page
@@ -32,7 +32,6 @@ class App extends Component {
       [event.target.name]: event.target.value
     })
   }
-  
 
   onSubmit = (event) => {
     event.preventDefault();
@@ -40,8 +39,6 @@ class App extends Component {
       isLoggedIn: true
     })
   }
-
-
 
   render() {
     return (

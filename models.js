@@ -1,20 +1,21 @@
 const Sequelize = require('sequelize');
+
 const sequelize = new Sequelize({
-  database: 'project-3',
+  database: 'project_3_db',
   dialect: 'postgres'
 });
 
 // Create models here
-const Users = sequelize.define('users', {
+const User = sequelize.define('user', {
   name: Sequelize.TEXT,
-  userName: Sequelize.VARCHAR(50),
-  password: Sequelize.TEXT,
+  username: Sequelize.TEXT,
+  passwordDigest: { type: Sequelize.TEXT, unique: true },
   pictureSrc: Sequelize.TEXT,
   email: Sequelize.TEXT,
   city: Sequelize.TEXT
 });
 
-const Albums = sequelize.define('album', {
+const Album = sequelize.define('album', {
   title: Sequelize.TEXT,
   artist: Sequelize.TEXT,
   releaseYear: Sequelize.INTEGER,
@@ -25,13 +26,13 @@ const Albums = sequelize.define('album', {
 });
 
 const UserAlbums = sequelize.define('userAlbums');
-Users.belongToMany(Albums, { through: UserAlbums });
-Albums.belongToMany(Users, { through: UserAlbums });
+User.belongsToMany(Album, { through: UserAlbums });
+Album.belongsToMany(User, { through: UserAlbums });
 
 // Export models
 module.exports = {
-  Users,
-  Albums,
+  User,
+  Album,
   UserAlbums,
   sequelize: sequelize
 };
