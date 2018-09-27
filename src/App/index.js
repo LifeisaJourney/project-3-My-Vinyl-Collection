@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./style.css";
 import Register from '../Register';
 import User from "../User";
+import Login from "../Login";
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 class App extends Component {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export default class Register extends Component {
   constructor(props) {
@@ -12,6 +12,23 @@ export default class Register extends Component {
       message: ''
     }
   }
+  
+  onInputChange = evt => {
+    this.setState({
+      [evt.target.name]: evt.target.value
+    })
+  }
+  onFormSubmit = evt => {
+    evt.preventDefault();
+    this.setState({
+      name: evt.target.value,
+      username: evt.target.value,
+      password: evt.target.value,
+      pictureSrc: evt.target.value,
+      city: evt.target.value
+    })
+  }
+
   register = async () => {
     const requestBody = JSON.stringify({
       name: this.state.name,
@@ -38,14 +55,6 @@ export default class Register extends Component {
     localStorage.setItem('user-jwt', JSON.stringify(responseBody.token));
   }
 
-  onInputChange = evt => {
-    this.setState({
-      [evt.target.name]: evt.target.value
-    })
-  }
-  onFormSubmit = evt => {
-    evt.preventDefault();
-  }
 
   render() {
     return (
@@ -69,7 +78,10 @@ export default class Register extends Component {
           <button type='button' onClick={this.register}>
             Register
           </button>
+          {this.state.message &&
+          <h3>{this.state.message}</h3>}
         </form>
+
       </div>
     )
   }

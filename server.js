@@ -113,18 +113,18 @@ app.post('/api/current-user/albums', async (req, res) => {
 
 
 app.get('/api/current-user/albums', async (req, res) => {
-  const userAlbums = await Album.findAll({
-    include: [
-      {
-        model: User,
-        where: {
-          id: 
-        }
-        attributes: []
-      },
-    ],
-  });
-  res.json(userAlbums);
+  // const userAlbums = await Album.findAll({
+  //   include: [
+  //     {
+  //       model: User,
+  //       where: {
+  //         id: 
+  //       }
+  //       attributes: []
+  //     },
+  //   ],
+  // });
+  // res.json(userAlbums);
 });
 
 app.listen(PORT, () => {
