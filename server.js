@@ -20,7 +20,7 @@ app.post('/api/register', async (req, res) => {
   const { username, password } = req.body;
   console.log(username, password);
   if (!username || !password) {
-    res.status(400).json({ error: 'Username and password are required for registration' });
+    res.status(400).json({ message: 'Username and password are required for registration' });
     return;
   }
 
@@ -54,7 +54,7 @@ app.post('/api/login', async (req, res) => {
   });
 
   if (!user) {
-    res.status(401).json({ error: 'Username or password invalid' });
+    res.status(401).json({ message: 'Username or password invalid' });
     return
   }
 
@@ -64,13 +64,13 @@ app.post('/api/login', async (req, res) => {
     const token = jwt.sign({ userId: user.id }, jwtSecret);
     res.json({ token: token });
   } else {
-    res.status(401).json({ error: 'Username or password invalid' });
+    res.status(401).json({ message: 'Username or password invalid' });
     return
   }
 
 });
 
-app.get('api/current-user', async (req, res) => {
+app.get('/api/current-user', async (req, res) => {
   const token = JSON.parse(req.headers['jwt-token']);
   let tokenData;
   try {
@@ -84,6 +84,47 @@ app.get('api/current-user', async (req, res) => {
     }
   });
   res.json(user);
+});
+
+app.post('/api/current-user/albums', async (req, res) => {
+  const { albumId } = req.body;
+  const token = JSON.parse(req.headers['jwt-token']);
+  let tokenData;
+  try {
+    tokenData = jwt.verify(token, jwtSecret);
+  } catch (e) {
+    console.log(e);
+  }
+  const user = await User.findOne({
+    where: {
+      id: tokenData.userId
+    }
+  });
+  const album = await Album.findOne({
+    where: {
+      id: albumId,
+    }
+  })
+  user.addAlbum(album);
+  res.sendStatus(201);
+});
+
+
+
+
+app.get('/api/current-user/albums', async (req, res) => {
+  const userAlbums = await Album.findAll({
+    include: [
+      {
+        model: User,
+        where: {
+          id: 
+        }
+        attributes: []
+      },
+    ],
+  });
+  res.json(userAlbums);
 });
 
 app.listen(PORT, () => {
