@@ -44,9 +44,8 @@ export default class UserCollection extends Component {
     render() {
         return (
             <Router>
-                
                 <div className="user-collection-container">
-                    <h1>Welcome{this.state.user.name}</h1>
+                    <h1>Welcome {this.state.user.name}</h1>
                     <div className="user-container">
                         <div className="user-img-container">
                             <img src={this.state.user.pictureSrc} alt='user-picture' />
@@ -59,17 +58,20 @@ export default class UserCollection extends Component {
                     </div>
                     <div className="album-collection-container">
                         <h2>Your Vinyl Collection</h2>
-                        {this.state.userAlbums && this.state.userAlbums.map(userAlbum => {
-                            <UserAlbum
-                                albumImgSrc={userAlbum.pictureSrc}
-                                albumTitle={userAlbum.title}
-                                albumArtiste={userAlbum.artist}
-                            />
+                        {this.state.userAlbums.length > 0 && this.state.userAlbums.map(userAlbum => {
+                            return (
+                                <UserAlbum
+                                    albumImgSrc={userAlbum.coverPictureSrc}
+                                    albumTitle={userAlbum.title}
+                                    albumArtist={userAlbum.artist}
+                                />
+                            )
+                            
                         }
                         )}
                     </div>
                     <button onClick={this.addButtonClick}> <Link to='/albums'>"Add New Album"</Link></button>
-                    <Route path="/albums" component={UserAlbum}></Route>
+                    {/* <Route path="/albums" component={AlbumList}/> */}
                 </div>
             </Router>
         )
