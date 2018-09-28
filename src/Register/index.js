@@ -45,47 +45,45 @@ export default class Register extends Component {
       });
       return;
     }
-    else {
+    localStorage.setItem('user-jwt', responseBody.token);
       this.setState({
         redirectToReferrer: true,
       })
-      localStorage.setItem('user-jwt', JSON.stringify(responseBody.token));
-    }
   }
   render() {
     const { from } = this.props.location.state || { from: { pathname: "/" } };
     const { redirectToReferrer } = this.state;
 
     if (redirectToReferrer) {
-      return <Redirect to={UserCollection} />;
+      return <Redirect to="/" />;
     }
 
-    return(
+    return (
       <div>
-      <form >
-      <label>Name: </label>
-      <input type='text' placeholder='Name' onChange={this.onInputChange} name='name' value={this.state.name}>
-      </input>
-      <label>User name: </label>
-      <input type='text' placeholder='User name' onChange={this.onInputChange} name='username' value={this.state.username}>
-      </input>
-      <label>Password: </label>
-      <input type='password' placeholder='password' onChange={this.onInputChange} name='password' value={this.state.password}>
-      </input>
-      <label>Profile Picture </label>
-      <input type='file' onChange={this.onInputChange} name='pictureSrc' accept='.png, .jpg, .jpeg' value={this.state.pictureSrc}>
-      </input>
-      <label>City: </label>
-      <input type='text' placeholder='City' onChange={this.onInputChange} name='city' value={this.state.city}>
-      </input>
-    </form>
-      <button onClick={this.register}>
-        Register
+        <form >
+          <label>Name: </label>
+          <input type='text' placeholder='Name' onChange={this.onInputChange} name='name' value={this.state.name}>
+          </input>
+          <label>User name: </label>
+          <input type='text' placeholder='User name' onChange={this.onInputChange} name='username' value={this.state.username}>
+          </input>
+          <label>Password: </label>
+          <input type='password' placeholder='password' onChange={this.onInputChange} name='password' value={this.state.password}>
+          </input>
+          <label>Profile Picture </label>
+          <input type='file' onChange={this.onInputChange} name='pictureSrc' accept='.png, .jpg, .jpeg' value={this.state.pictureSrc}>
+          </input>
+          <label>City: </label>
+          <input type='text' placeholder='City' onChange={this.onInputChange} name='city' value={this.state.city}>
+          </input>
+        </form>
+        <button onClick={this.register}>
+          Register
       </button>
-          {
-      this.state.message &&
-      <h3>{this.state.message}</h3>
-    }
+        {
+          this.state.message &&
+          <h3>{this.state.message}</h3>
+        }
 
       </div >
     )

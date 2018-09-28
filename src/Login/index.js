@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Link,   Redirect, withRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Redirect, withRouter } from 'react-router-dom';
 import UserCollection from "../UserCollection";
 
 
@@ -41,20 +41,20 @@ export default class Login extends Component {
       });
       return;
     }
-    
-    localStorage.setItem('user-jwt', JSON.stringify(responseBody.token));
+
+    localStorage.setItem('user-jwt', responseBody.token);
     this.setState({
       redirectToReferrer: true,
     })
   }
-  
-  
+
+
   render() {
     const { from } = this.props.location.state || { from: { pathname: "/" } };
     const { redirectToReferrer } = this.state;
 
     if (redirectToReferrer) {
-      return <Redirect to={from}  />;
+      return <Redirect to={from} />;
     }
     return (
       <div>

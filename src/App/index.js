@@ -19,9 +19,9 @@ class App extends Component {
             <Link to='/login'>Log in</Link>
             <Link to='/register'>Register</Link>
           </nav>
-          <PrivateRoute path="/" component={UserCollection} />
-          <Route path="/login" component={Login} />
-          <Route path='/register' component={Register} />
+          <PrivateRoute path="/" exact component={UserCollection} />
+          <Route path="/login" exact component={Login} />
+          <Route path='/register' exact component={Register} />
         </div>
       </Router >
     );

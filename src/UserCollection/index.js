@@ -14,16 +14,16 @@ export default class UserCollection extends Component {
             isAddButtonClicked: false
         }
     }
-    ComponentDidMount = async () => {
+    componentDidMount = async () => {
         const user = await (await fetch('/api/current-user', {
-            method: GET,
+            method: "GET",
             headers: {
                 'jwt-token': this.state.isLoggedIn,
             }
         })).json();
 
         const albums = await (await fetch('/api/current-user/albums', {
-            method: GET,
+            method: "GET",
             headers: {
                 'jwt-token': this.state.isLoggedIn,
             }
