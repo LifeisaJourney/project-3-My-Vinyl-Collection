@@ -56,7 +56,7 @@ export default class UserCollection extends Component {
                 </div>
                 <button> <Link to='/albums'>"Add New Album"</Link> </button>
                 <Route path="/albums" component={UserAlbum}></Route>
-            </div>
+            </div>u
         )
     }
 
