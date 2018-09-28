@@ -46,7 +46,7 @@ export default class UserCollection extends Component {
             <Router>
                 
                 <div className="user-collection-container">
-                    <h1>Welcome{this.state.user.name}</h1>
+                    <h1>Welcome {this.state.user.name}</h1>
                     <div className="user-container">
                         <div className="user-img-container">
                             <img src={this.state.user.pictureSrc} alt='user-picture' />

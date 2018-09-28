@@ -17,7 +17,7 @@ app.get('/api/albums', async (req, res) => {
 });
 
 app.post('/api/register', async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, name, email, pictureSrc, city } = req.body;
   console.log(username, password);
   if (!username || !password) {
     res.status(400).json({ message: 'Username and password are required for registration' });
@@ -36,8 +36,12 @@ app.post('/api/register', async (req, res) => {
     const passwordDigest = await bcrypt.hash(password, 12);
 
     const newUser = await User.create({
+      name: name,
       username: username,
-      passwordDigest: passwordDigest
+      passwordDigest: passwordDigest,
+      email: email,
+      pictureSrc: pictureSrc,
+      city: city
     });
   
     const token = jwt.sign({ userId: newUser.id }, jwtSecret);
