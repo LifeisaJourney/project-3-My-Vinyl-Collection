@@ -8,6 +8,7 @@ export default class Register extends Component {
     this.state = {
       redirectToReferrer: false,
       name: '',
+      email: '',
       username: '',
       password: '',
       pictureSrc: '',
@@ -26,11 +27,13 @@ export default class Register extends Component {
 
     const requestBody = JSON.stringify({
       name: this.state.name,
+      email: this.state.email,
       username: this.state.username,
       password: this.state.password,
       pictureSrc: this.state.pictureSrc,
       city: this.state.city
     });
+    console.log(requestBody);
     const response = await fetch('/api/register', {
       method: 'POST',
       body: requestBody,
@@ -66,6 +69,9 @@ export default class Register extends Component {
           </input>
           <label>User name: </label>
           <input type='text' placeholder='User name' onChange={this.onInputChange} name='username' value={this.state.username}>
+          </input>
+          <label>Email: </label>
+          <input type='text' placeholder='email' onChange={this.onInputChange} name='email' value={this.state.email}>
           </input>
           <label>Password: </label>
           <input type='password' placeholder='password' onChange={this.onInputChange} name='password' value={this.state.password}>
