@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export default class Register extends Component {
   constructor(props) {
@@ -12,7 +12,15 @@ export default class Register extends Component {
       message: ''
     }
   }
+  
+  onInputChange = evt => {
+    this.setState({
+      [evt.target.name]: evt.target.value
+    })
+  }
+
   register = async () => {
+    
     const requestBody = JSON.stringify({
       name: this.state.name,
       username: this.state.username,
@@ -28,29 +36,22 @@ export default class Register extends Component {
       }
     });
     const responseBody = await response.json();
-    if (response.status === 409) {
+    if (responseBody.status === 409 || responseBody.status === 400) {
       this.setState({
         message: responseBody.message
       });
       return;
     }
-    this.props.onLogIn();
     localStorage.setItem('user-jwt', JSON.stringify(responseBody.token));
+    this.props.onLogin();
+    console.log('click')
   }
 
-  onInputChange = evt => {
-    this.setState({
-      [evt.target.name]: evt.target.value
-    })
-  }
-  onFormSubmit = evt => {
-    evt.preventDefault();
-  }
 
   render() {
     return (
       <div>
-        <form onSubmit={this.onFormSubmit}>
+        <form >
           <label>Name: </label>
           <input type='text' placeholder='Name' onChange={this.onInputChange} name='name' value={this.state.name}>
           </input>
@@ -66,10 +67,13 @@ export default class Register extends Component {
           <label>City: </label>
           <input type='text' placeholder='City' onChange={this.onInputChange} name='city' value={this.state.city}>
           </input>
-          <button type='button' onClick={this.register}>
+        </form>
+        <button onClick={this.register}>
             Register
           </button>
-        </form>
+          {this.state.message &&
+          <h3>{this.state.message}</h3>}
+
       </div>
     )
   }
