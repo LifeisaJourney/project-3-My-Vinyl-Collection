@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./style.css";
 import Register from '../Register';
-// import UserCollection from "../UserCollection";
+import UserCollection from "../UserCollection";
 import Login from "../Login";
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
@@ -63,8 +63,8 @@ class App extends Component {
           }
         {
           this.state.isLoggedIn === true && (
-            // <Route path='/current-user' exact component={UserCollection} />
-            <div>hello world</div>
+            <Route path='/current-user' exact component={UserCollection} />
+            // <div>hello world</div>
             // console.log("hi")
           )
         }
