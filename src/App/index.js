@@ -13,6 +13,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <h1>Welcome to My Vinyl Collection</h1>
+
           <nav>
             <Link to='/'>Home Page</Link>
             <Link to='/login'>Log in</Link>

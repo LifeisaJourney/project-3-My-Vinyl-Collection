@@ -206,6 +206,17 @@ const main = async () => {
     description: `1989 is the fifth studio album by American singer-songwriter Taylor Swift, released on October 27, 2014 through Big Machine Records. Swift began composing the album following the release of her previous studio effort, Red (2012). Over the course of the two-year songwriting period, she collaborated with producers Max Martin and Shellback—Martin served as the album's executive producer alongside Swift. The album's title was named after the singer's birth year and its music was inspired by the pop music of the 1980s.`
   });
 
+  const fred = await User.create({
+    name: "Fred Astair",
+    username: "fred",
+    passwordDigest: "$2a$10$pvBwELhWom3/uH7trsQRbOQtxOVt8ZWFSWWNLI5hD/dDZxpJH0dje",
+    email:"fred@gmail.com",
+    city: "New York"
+  });
+
+  fred.addAlbum(album1);
+  fred.addAlbum(album20);
+  
   process.exit();
 }
 
