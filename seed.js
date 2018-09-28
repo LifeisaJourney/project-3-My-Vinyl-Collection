@@ -214,8 +214,8 @@ const main = async () => {
     city: "New York"
   });
 
-  fred.addAlbum(album1);
-  fred.addAlbum(album20);
+  await fred.addAlbum(album1);
+  await fred.addAlbum(album20);
   
   process.exit();
 }

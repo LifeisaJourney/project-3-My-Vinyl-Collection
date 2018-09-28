@@ -140,6 +140,31 @@ app.get('/api/current-user/albums', async (req, res) => {
   res.json(userAlbums);
 });
 
+app.delete('/api/current-user/albums/:id', async (req, res) => {
+  const id = req.params.id 
+  const token = req.headers['jwt-token'];
+  let tokenData;
+  try {
+    tokenData = jwt.verify(token, jwtSecret);
+  } catch (e) {
+    console.log(e);
+  }
+  const user = await User.findOne({
+    where: {
+      id: tokenData.userId
+    }
+  });
+  const albumToDelete = await UserAlbums.findOne({
+    where: {
+      $and: [
+        {albumId: id},
+        {userId: user.id},
+      ]
+    }
+  });
+  res.sendStatus(200);
+});
+
 app.listen(PORT, () => {
   console.log(`Express server listening on port ${PORT}`);
 });

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import UserAlbum from '../UserAlbum';
+import AlbumList from '../AlbumList';
 import "./style.css";
 
 export default class UserCollection extends Component {
@@ -44,32 +45,40 @@ export default class UserCollection extends Component {
     render() {
         return (
             <Router>
-                
-                <div className="user-collection-container">
-                    <h1>Welcome {this.state.user.name}</h1>
-                    <div className="user-container">
-                        <div className="user-img-container">
-                            <img src={this.state.user.pictureSrc} alt='user-picture' />
+                <div>
+                    {this.state.isAddButtonClicked === false && (
+                        <div className="user-collection-container">
+                            <h1>Welcome {this.state.user.name}</h1>
+                            <div className="user-container">
+                                <div className="user-img-container">
+                                    <img src={this.state.user.pictureSrc} alt='user-picture' />
+                                </div>
+                                <div className="user-info">
+                                    <h2>User Name: {this.state.user.username}</h2>
+                                    <h2>Email: {this.state.user.email}</h2>
+                                    <h2>City: {this.state.user.city}</h2>
+                                </div>
+                            </div>
+                            <div className="album-collection-container">
+                                <h2>Your Vinyl Collection</h2>
+                                {this.state.userAlbums.length > 0 && this.state.userAlbums.map(userAlbum => {
+                                    return (
+                                        <UserAlbum
+                                            albumImgSrc={userAlbum.coverPictureSrc}
+                                            albumTitle={userAlbum.title}
+                                            albumArtist={userAlbum.artist}
+                                        />
+                                    )
+
+                                }
+                                )}
+                            </div>
+                            <button onClick={this.addButtonClick}> <Link to='/albums'>"Add New Album"</Link></button>
                         </div>
-                        <div className="user-info">
-                            <h2>User Name: {this.state.user.username}</h2>
-                            <h2>Email: {this.state.user.email}</h2>
-                            <h2>City: {this.state.user.city}</h2>
-                        </div>
-                    </div>
-                    <div className="album-collection-container">
-                        <h2>Your Vinyl Collection</h2>
-                        {this.state.userAlbums && this.state.userAlbums.map(userAlbum => {
-                            <UserAlbum
-                                albumImgSrc={userAlbum.pictureSrc}
-                                albumTitle={userAlbum.title}
-                                albumArtiste={userAlbum.artist}
-                            />
-                        }
-                        )}
-                    </div>
-                    <button onClick={this.addButtonClick}> <Link to='/albums'>"Add New Album"</Link></button>
-                    <Route path="/albums" component={UserAlbum}></Route>
+                    )}
+                    {this.state.isAddButtonClicked === true && (
+                        <Route path="/albums" component={AlbumList}/>
+                    )}
                 </div>
             </Router>
         )
