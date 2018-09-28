@@ -77,11 +77,3 @@ export default class UserCollection extends Component {
 
 }
 
-
-
-
-
-
-
-
-
