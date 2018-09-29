@@ -54,6 +54,12 @@ app.post('/api/register', async (req, res) => {
 
 app.post('/api/login', async (req, res) => {
   const { username, password } = req.body;
+  if (!username || !password) {
+    response.status(400).json({
+      error: "Login requires a username and password in the request body."
+    });
+    return;
+  }
   const user = await User.findOne({
     where: {
       username: username
@@ -72,9 +78,7 @@ app.post('/api/login', async (req, res) => {
     res.json({ token: token });
   } else {
     res.status(401).json({ message: 'Username or password invalid' });
-    return;
   }
-
 });
 
 app.get('/api/current-user', async (req, res) => {
