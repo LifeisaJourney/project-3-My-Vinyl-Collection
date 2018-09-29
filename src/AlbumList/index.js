@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Album from "../Album";
 
 export default class AlbumList extends Component {
   constructor(props) {
     super(props);
+    this.state = {
     albums: [],
-    user: {}
+    user: {},
     favoriteAlbum: []
     // isAddButtonClicked: false
   }
+}
   componentDidMount = async () => {
-    this.fetchAlbuns();
+    this.fetchAlbums();
     this.fetchUser();
   }
-  fetchAlbuns = async () => {
-    const response = await fetch('api/albuns')
-    const albuns = await response.json();
+  fetchAlbums = async () => {
+    const response = await fetch('api/albums')
+    const albums = await response.json();
     this.setState({
-      movies: movies
+      albums: albums
     })
   }
   fetchUser = async () => {
@@ -50,6 +53,7 @@ export default class AlbumList extends Component {
         {this.state.albums.map(album => {
           return (
             <Album
+              key={album.id}
               title={album.name}
               artist={album.artist}
               releaseYear={album.releaseYear}
