@@ -1,55 +1,47 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import UserAlbum from '../UserAlbum';
-// import AlbumList from '../AlbumList';
+import AlbumList from '../AlbumList';
 import "./style.css";
 
 export default class UserCollection extends Component {
-  constructor(props) {
-    super(props);
-    const token = localStorage.getItem('user-jwt');
-    this.state = {
-      page: "user-collection",
-      isLoggedIn: token,
-      user: '',
-      userAlbums: [],
-      isAddButtonClicked: false
+    constructor(props) {
+        super(props);
+        const token = localStorage.getItem('user-jwt');
+        this.state = {
+            isLoggedIn: token,
+            user: '',
+            userAlbums: [],
+        }
     }
-  }
 
   componentDidMount = async () => {
     this.fetchUser();
     this.fetchAlbums();
   }
 
-  fetchUser = async () => {
-    const user = await (await fetch('/api/current-user', {
-      method: "GET",
-      headers: {
-        'jwt-token': this.state.isLoggedIn,
-      }
-    })).json();
-    this.setState({
-      user: user
-    });
-  }
+    fetchUser = async () => {
+        const user = await (await fetch('/api/current-user', {
+            method: "GET",
+            headers: {
+                'jwt-token': this.state.isLoggedIn,
+            }
+        })).json();
+        this.setState({
+            user: user
+        });
+    }
 
-  fetchAlbums = async () => {
-    const albums = await (await fetch('/api/current-user/albums', {
-      method: "GET",
-      headers: {
-        'jwt-token': this.state.isLoggedIn,
-      }
-    })).json();
+    fetchAlbums = async () => {
+        const albums = await (await fetch('/api/current-user/albums', {
+            method: "GET",
+            headers: {
+                'jwt-token': this.state.isLoggedIn,
+            }
+        })).json();
 
     this.setState({
       userAlbums: albums
-    });
-  }
-
-  addButtonClick = () => {
-    this.setState({
-      page: "album-list"
     });
   }
 
@@ -71,7 +63,6 @@ export default class UserCollection extends Component {
     return (
       <Router>
         <div>
-          {this.state.page === 'user-collection' && (
             <div className="user-collection-container">
               <h1 className='personalize-welcome'>Welcome {this.state.user.name}!</h1>
               <div className="user-container">
@@ -102,17 +93,13 @@ export default class UserCollection extends Component {
                 )}
               </div>
               <div className='add-button-div'>
-                <button className='addition-button' onClick={this.addButtonClick}> <Link to='/albums'>Add New Album</Link></button>
+                <button className='addition-button'> <Link to='/albums'>Add New Album</Link></button>
               </div>
             </div>
-          )}
-          {this.state.page === 'album-list' && (
-            console.log("album-list page!")
-            // <Route path="/albums" component={AlbumList}/>
-          )}
+            <Route exact path="/albums" component={AlbumList}/>
         </div>
       </Router>
     )
   }
-}
+
 

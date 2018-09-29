@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 export default class Register extends Component {
   constructor(props) {
@@ -78,7 +78,7 @@ export default class Register extends Component {
       });
 
       const responseBody = await response.json();
-      if (responseBody.status === 409 || responseBody.status === 400) {
+      if (responseBody.status === 409 || responseBody.status === 401) {
         this.setState({
           message: responseBody.message
         });
@@ -100,7 +100,7 @@ export default class Register extends Component {
       border: this.state.passwordBorder,
       outline: 'none',
     }
-    const { from } = this.props.location.state || { from: { pathname: "/" } };
+    const { from } = this.props.location.state || { from: { pathname: "/my-collection" } };
     const { redirectToReferrer } = this.state;
 
     if (redirectToReferrer) {

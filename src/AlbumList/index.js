@@ -5,13 +5,12 @@ import Album from "../Album";
 export default class AlbumList extends Component {
   constructor(props) {
     super(props);
+    const token = localStorage.getItem('user-jwt');
     this.state = {
-    albums: [],
-    user: {},
-    favoriteAlbum: []
-    // isAddButtonClicked: false
+      albums: [],
+      user: {},
+    }
   }
-}
   componentDidMount = async () => {
     this.fetchAlbums();
     this.fetchUser();
@@ -36,8 +35,9 @@ export default class AlbumList extends Component {
   }
 
   addAlbum = async id => {
-    await fetch('api/current-user', {
-      method: 'PUT',
+    console.log(id)
+    await fetch('api/current-user/albums', {
+      method: 'POST',
       body: JSON.stringify({albumId: id}),
       headers: {
         'Content-Type': 'application/json',
@@ -45,27 +45,36 @@ export default class AlbumList extends Component {
       }
     })
     this.fetchUser();
+
   }
 
   render() {
     return (
-      <div className="albuns-list-page">
-        {this.state.albums.map(album => {
-          return (
-            <Album
-              key={album.id}
-              title={album.name}
-              artist={album.artist}
-              releaseYear={album.releaseYear}
-              genre={album.genre}
-              coverPictureSrc={album.coverPictureSrc}
-              rating={album.rating}
-              description={album.description}
-              onClickFavoriteButton={() => this.addAlbum(album.id)}
-            />
-          );
-        })}
-      </div>
+      <Router>
+        <div>
+          <div className="albuns-list-page">
+            <h1>Select one of the albums from our list</h1>
+            <div className="album-list-container">
+              {this.state.albums.map(album => {
+                return (
+                  <Album
+                    key={album.id}
+                    title={album.title}
+                    artist={album.artist}
+                    releaseYear={album.releaseYear}
+                    genre={album.genre}
+                    coverPictureSrc={album.coverPictureSrc}
+                    rating={album.rating}
+                    description={album.description}
+                  addedAlbum={this.state.user.albumId === album.id}
+                  onClickAddButton={() => this.addAlbum(album.id)}
+                  />
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      </Router>
     )
   }
 }
