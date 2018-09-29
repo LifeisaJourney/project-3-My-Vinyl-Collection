@@ -5,6 +5,7 @@ import UserCollection from "../UserCollection";
 import Login from "../Login";
 import PrivateRoute from "../PrivateRoute";
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import AlbumList from "../AlbumList";
 
 class App extends Component {
 
@@ -15,16 +16,16 @@ class App extends Component {
           <h1>Welcome to My Vinyl Collection</h1>
 
           <nav>
-            <Link to='/'>Home Page  </Link>
+            <Link to='/my-collection'>Home Page  </Link>
             &nbsp;
             &nbsp;
-            <Link to='/login'>Log in  </Link>
+            <Link to='/'>Log in  </Link>
             &nbsp;
             &nbsp;
             <Link to='/register'>Register </Link>
           </nav>
-          <PrivateRoute path="/" exact component={UserCollection} />
-          <Route path="/login" exact component={Login} />
+          <PrivateRoute path="/my-collection" exact component={UserCollection} />
+          <Route path="/" exact component={Login} />
           <Route path='/register' exact component={Register} />
         </div>
       </Router >

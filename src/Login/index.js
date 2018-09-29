@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Redirect} from 'react-router-dom';
+import { Redirect} from 'react-router-dom';
 
 
 
@@ -50,7 +50,7 @@ export default class Login extends Component {
 
 
   render() {
-    const { from } = this.props.location.state || { from: { pathname: "/" } };
+    const { from } = this.props.location.state || { from: { pathname: "/my-collection" } };
     const { redirectToReferrer } = this.state;
 
     if (redirectToReferrer) {
