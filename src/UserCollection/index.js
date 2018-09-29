@@ -12,7 +12,6 @@ export default class UserCollection extends Component {
             isLoggedIn: token,
             user: '',
             userAlbums: [],
-            isAddButtonClicked: false
         }
     }
 
