@@ -45,7 +45,6 @@ export default class UserCollection extends Component {
         });
     }
 
-
     deleteAlbum = async (id) => {
         console.log(id);
         const deleteAlbum = await (await fetch('/api/current-user/albums', {
@@ -62,42 +61,41 @@ export default class UserCollection extends Component {
 
     render() {
         return (
-            <Router>
-                <div>
-                    <div className="user-collection-container">
-                        <h1>Welcome {this.state.user.name}</h1>
-                        <div className="user-container">
-                            <div className="user-img-container">
-                                <img src={this.state.user.pictureSrc} alt='user-picture' />
-                            </div>
-                            <div className="user-info">
-                                <h2>User Name: {this.state.user.username}</h2>
-                                <h2>Email: {this.state.user.email}</h2>
-                                <h2>City: {this.state.user.city}</h2>
-                            </div>
+          <Router>
+            <div>
+                <div className="user-collection-container">
+                    <h1>Welcome {this.state.user.name}</h1>
+                    <div className="user-container">
+                        <div className="user-img-container">
+                            <img src={this.state.user.pictureSrc} alt='user-picture' />
                         </div>
-                        <div className="album-collection-container">
-                            <h2>Your Vinyl Collection</h2>
-                            {this.state.userAlbums.length > 0 && this.state.userAlbums.map(userAlbum => {
-                                return (
-                                    <UserAlbum
-                                        key={userAlbum.id}
-                                        albumImgSrc={userAlbum.coverPictureSrc}
-                                        albumTitle={userAlbum.title}
-                                        albumArtist={userAlbum.artist}
-                                        onClickDeleteButton={() => this.deleteAlbum(userAlbum.id)}
-                                    />
-                                )
-                            }
-                            )}
+                        <div className="user-info">
+                            <h2>User Name: {this.state.user.username}</h2>
+                            <h2>Email: {this.state.user.email}</h2>
+                            <h2>City: {this.state.user.city}</h2>
                         </div>
-                        <button> <Link to='/albums'>"Add New Album"</Link></button>
                     </div>
-
-                    <Route path="/albums" exact component={AlbumList} />
+                    <div className="album-collection-container">
+                        <h2>Your Vinyl Collection</h2>
+                        {this.state.userAlbums.length > 0 && this.state.userAlbums.map(userAlbum => {
+                            return (
+                                <UserAlbum
+                                    key={userAlbum.id}
+                                    albumImgSrc={userAlbum.coverPictureSrc}
+                                    albumTitle={userAlbum.title}
+                                    albumArtist={userAlbum.artist}
+                                    onClickDeleteButton={() => this.deleteAlbum(userAlbum.id)}
+                                />
+                            )
+                        }
+                        )}
+                    </div>
+                    <button> <Link to='/albums'>"Add New Album"</Link></button>
 
                 </div>
-            </Router>
+                <Route exact path="/albums" component={AlbumList} />
+            </div>
+          </Router>
         )
     }
 }

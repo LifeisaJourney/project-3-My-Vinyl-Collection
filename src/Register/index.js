@@ -78,7 +78,7 @@ export default class Register extends Component {
       });
 
       const responseBody = await response.json();
-      if (responseBody.status === 409 || responseBody.status === 400) {
+      if (responseBody.status === 409 || responseBody.status === 401) {
         this.setState({
           message: responseBody.message
         });

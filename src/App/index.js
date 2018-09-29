@@ -4,8 +4,7 @@ import Register from '../Register';
 import UserCollection from "../UserCollection";
 import Login from "../Login";
 import PrivateRoute from "../PrivateRoute";
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import AlbumList from "../AlbumList";
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 class App extends Component {
 
@@ -14,9 +13,8 @@ class App extends Component {
       <Router>
         <div className="App">
           <h1>Welcome to My Vinyl Collection</h1>
-
           <nav>
-            <Link to='/my-collection'>Home Page  </Link>
+            <Link to='/my-collection'>My Collection  </Link>
             &nbsp;
             &nbsp;
             <Link to='/'>Log in  </Link>
@@ -24,9 +22,11 @@ class App extends Component {
             &nbsp;
             <Link to='/register'>Register </Link>
           </nav>
-          <PrivateRoute path="/my-collection" exact component={UserCollection} />
-          <Route path="/" exact component={Login} />
-          <Route path='/register' exact component={Register} />
+          <Switch>
+            <PrivateRoute exact path='/my-collection' component={UserCollection} />
+            <Route exact path='/' component={Login} />
+            <Route exact path='/register' component={Register} />
+          </Switch>
         </div>
       </Router >
     );
