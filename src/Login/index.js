@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
-
-
 export default class Login extends Component {
   constructor(props) {
     super(props)
@@ -49,7 +47,7 @@ export default class Login extends Component {
   }
 
   render() {
-    const { from } = { from: { pathname: "/my-collection" } };
+    const { from } = this.props.location.state || { from: { pathname: "/my-collection" } };
     const { redirectToReferrer } = this.state;
 
     if (redirectToReferrer) {

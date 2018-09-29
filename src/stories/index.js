@@ -14,3 +14,5 @@ storiesOf('Button', module)
   .add('with some emoji', () => <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>);
 
 storiesOf('UserCollection', module).add('to Storybook', () => <UserCollection />);
+
+storiesOf('AlbumList', module).add('to Storybook', () => <AlbumList />);

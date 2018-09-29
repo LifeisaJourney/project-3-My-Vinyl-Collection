@@ -13,7 +13,6 @@ class App extends Component {
       <Router>
         <div className="App">
           <h1>Welcome to My Vinyl Collection</h1>
-
           <nav>
             <Link to='/my-collection'>My Collection  </Link>
             &nbsp;
