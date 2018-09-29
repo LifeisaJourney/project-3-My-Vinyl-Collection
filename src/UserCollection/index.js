@@ -5,110 +5,114 @@ import UserAlbum from '../UserAlbum';
 import "./style.css";
 
 export default class UserCollection extends Component {
-    constructor(props) {
-        super(props);
-        const token = localStorage.getItem('user-jwt');
-        this.state = {
-            page: "user-collection",
-            isLoggedIn: token,
-            user: '',
-            userAlbums: [],
-            isAddButtonClicked: false
-        }
+  constructor(props) {
+    super(props);
+    const token = localStorage.getItem('user-jwt');
+    this.state = {
+      page: "user-collection",
+      isLoggedIn: token,
+      user: '',
+      userAlbums: [],
+      isAddButtonClicked: false
     }
+  }
 
-    componentDidMount = async () => {
-        this.fetchUser();
-        this.fetchAlbums();
-    }
+  componentDidMount = async () => {
+    this.fetchUser();
+    this.fetchAlbums();
+  }
 
-    fetchUser = async() => {
-        const user = await (await fetch('/api/current-user', {
-            method: "GET",
-            headers: {
-                'jwt-token': this.state.isLoggedIn,
-            }
-        })).json();
-        this.setState({
-            user: user
-        });
-    }
+  fetchUser = async () => {
+    const user = await (await fetch('/api/current-user', {
+      method: "GET",
+      headers: {
+        'jwt-token': this.state.isLoggedIn,
+      }
+    })).json();
+    this.setState({
+      user: user
+    });
+  }
 
-    fetchAlbums = async() => {
-        const albums = await (await fetch('/api/current-user/albums', {
-            method: "GET",
-            headers: {
-                'jwt-token': this.state.isLoggedIn,
-            }
-        })).json();
+  fetchAlbums = async () => {
+    const albums = await (await fetch('/api/current-user/albums', {
+      method: "GET",
+      headers: {
+        'jwt-token': this.state.isLoggedIn,
+      }
+    })).json();
 
-        this.setState({
-            userAlbums: albums
-        });
-    }
+    this.setState({
+      userAlbums: albums
+    });
+  }
 
-    addButtonClick = () => {
-        this.setState({
-            page: "album-list"
-        });
-    }
+  addButtonClick = () => {
+    this.setState({
+      page: "album-list"
+    });
+  }
 
-    deleteAlbum = async (id) => {
-        console.log(id);
-        const deleteAlbum = await (await fetch('/api/current-user/albums', {
-            method: "DELETE",
-            body: JSON.stringify({ albumId: id }),
-            headers: {
-                'Content-Type': 'application/json',
-                'jwt-token': this.state.isLoggedIn
-            }
-        })).json();
-        this.fetchUser();
-        this.fetchAlbums();
-    }
+  deleteAlbum = async (id) => {
+    console.log(id);
+    const deleteAlbum = await (await fetch('/api/current-user/albums', {
+      method: "DELETE",
+      body: JSON.stringify({ albumId: id }),
+      headers: {
+        'Content-Type': 'application/json',
+        'jwt-token': this.state.isLoggedIn
+      }
+    })).json();
+    this.fetchUser();
+    this.fetchAlbums();
+  }
 
-    render() {
-        return (
-            <Router>
-                <div>
-                    {this.state.page === 'user-collection' && (
-                        <div className="user-collection-container">
-                            <h1>Welcome {this.state.user.name}</h1>
-                            <div className="user-container">
-                                <div className="user-img-container">
-                                    <img src={this.state.user.pictureSrc} alt='user-picture' />
-                                </div>
-                                <div className="user-info">
-                                    <h2>User Name: {this.state.user.username}</h2>
-                                    <h2>Email: {this.state.user.email}</h2>
-                                    <h2>City: {this.state.user.city}</h2>
-                                </div>
-                            </div>
-                            <div className="album-collection-container">
-                                <h2>Your Vinyl Collection</h2>
-                                {this.state.userAlbums.length > 0 && this.state.userAlbums.map(userAlbum => {
-                                    return (
-                                        <UserAlbum
-                                            key={userAlbum.id}
-                                            albumImgSrc={userAlbum.coverPictureSrc}
-                                            albumTitle={userAlbum.title}
-                                            albumArtist={userAlbum.artist}
-                                            onClickDeleteButton={() => this.deleteAlbum(userAlbum.id)}
-                                        />
-                                    )
-                                }
-                                )}
-                            </div>
-                            <button onClick={this.addButtonClick}> <Link to='/albums'>"Add New Album"</Link></button>
-                        </div>
-                    )}
-                    {this.state.page === 'album-list' && (
-                        console.log("album-list page!")
-                        // <Route path="/albums" component={AlbumList}/>
-                    )}
+  render() {
+    return (
+      <Router>
+        <div>
+          {this.state.page === 'user-collection' && (
+            <div className="user-collection-container">
+              <h1 className='personalize-welcome'>Welcome {this.state.user.name}!</h1>
+              <div className="user-container">
+                <div className="user-img-container">
+                  <img className='user-profile-pic' src={this.state.user.pictureSrc} alt='user-picture' />
                 </div>
-            </Router>
-        )
-    }
+                <div className="user-info">
+                  <h2>User Name: {this.state.user.username}</h2>
+                  <h2>Email: {this.state.user.email}</h2>
+                  <h2>City: {this.state.user.city}</h2>
+                </div>
+              </div>
+              <div className="album-collection-container">
+                <div className='vinyl-collection'>
+                  <h2 className='vinyl-collection-h2'>Your Vinyl Collection</h2>
+                </div>
+                {this.state.userAlbums.length > 0 && this.state.userAlbums.map(userAlbum => {
+                  return (
+                    <UserAlbum
+                      key={userAlbum.id}
+                      albumImgSrc={userAlbum.coverPictureSrc}
+                      albumTitle={userAlbum.title}
+                      albumArtist={userAlbum.artist}
+                      onClickDeleteButton={() => this.deleteAlbum(userAlbum.id)}
+                    />
+                  )
+                }
+                )}
+              </div>
+              <div className='add-button-div'>
+                <button className='addition-button' onClick={this.addButtonClick}> <Link to='/albums'>Add New Album</Link></button>
+              </div>
+            </div>
+          )}
+          {this.state.page === 'album-list' && (
+            console.log("album-list page!")
+            // <Route path="/albums" component={AlbumList}/>
+          )}
+        </div>
+      </Router>
+    )
+  }
 }
 

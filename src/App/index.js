@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <h1>Welcome to My Vinyl Collection</h1>
+          <h1 className='welcome-screen-title'>Welcome to My Vinyl Collection</h1>
 
           <nav>
             <Link to='/'>Home Page  </Link>
