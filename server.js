@@ -18,20 +18,23 @@ app.get('/api/albums', async (req, res) => {
 
 app.post('/api/register', async (req, res) => {
   const { username, password, name, email, pictureSrc, city } = req.body;
-  console.log(username, password);
   if (!username || !password) {
-    res.status(400).json({ message: 'Username and password are required for registration' });
+    res.status(401).json({ message: 'Username and password are required for registration' });
     return;
   }
 
   const existingUser = await User.findOne({
     where: {
-      username: username
+      $and:[{
+        username: username,
+      }]
+      
     }
   });
 
   if (existingUser) {
-    res.status(409).json({ message: 'This username already exists' });
+    res.status(409).json({ message: 'This username and password already exists' });
+    return;
   } else {
     const passwordDigest = await bcrypt.hash(password, 12);
 
@@ -46,7 +49,7 @@ app.post('/api/register', async (req, res) => {
   
     const token = jwt.sign({ userId: newUser.id }, jwtSecret);
     res.json({ token: token });
-  }  
+  }
 });
 
 app.post('/api/login', async (req, res) => {
@@ -59,7 +62,7 @@ app.post('/api/login', async (req, res) => {
 
   if (!user) {
     res.status(401).json({ message: 'Username or password invalid' });
-    return
+    return;
   }
 
   const isPasswordCorrect = await bcrypt.compare(password, user.passwordDigest)
@@ -69,7 +72,7 @@ app.post('/api/login', async (req, res) => {
     res.json({ token: token });
   } else {
     res.status(401).json({ message: 'Username or password invalid' });
-    return
+    return;
   }
 
 });
@@ -91,14 +94,16 @@ app.get('/api/current-user', async (req, res) => {
 });
 
 app.post('/api/current-user/albums', async (req, res) => {
-  const { albumId } = req.body;
   const token = req.headers['jwt-token'];
+  console.log(token);
+
   let tokenData;
   try {
     tokenData = jwt.verify(token, jwtSecret);
   } catch (e) {
     console.log(e);
   }
+  const { albumId } = req.body;
   const user = await User.findOne({
     where: {
       id: tokenData.userId
@@ -140,8 +145,7 @@ app.get('/api/current-user/albums', async (req, res) => {
   res.json(userAlbums);
 });
 
-app.delete('/api/current-user/albums/:id', async (req, res) => {
-  const id = req.params.id 
+app.delete('/api/current-user/albums', async (req, res) => {
   const token = req.headers['jwt-token'];
   let tokenData;
   try {
@@ -149,16 +153,18 @@ app.delete('/api/current-user/albums/:id', async (req, res) => {
   } catch (e) {
     console.log(e);
   }
+  const { albumId } = req.body;
   const user = await User.findOne({
     where: {
       id: tokenData.userId
     }
   });
-  const albumToDelete = await UserAlbums.findOne({
+
+  await UserAlbums.destroy({
     where: {
       $and: [
-        {albumId: id},
-        {userId: user.id},
+        { albumId: albumId },
+        { userId: user.id },
       ]
     }
   });

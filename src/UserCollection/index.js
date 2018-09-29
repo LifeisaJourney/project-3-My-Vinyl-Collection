@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import UserAlbum from '../UserAlbum';
-import AlbumList from '../AlbumList';
+// import AlbumList from '../AlbumList';
 import "./style.css";
 
 export default class UserCollection extends Component {
@@ -9,20 +9,32 @@ export default class UserCollection extends Component {
         super(props);
         const token = localStorage.getItem('user-jwt');
         this.state = {
+            page: "user-collection",
             isLoggedIn: token,
             user: '',
             userAlbums: [],
             isAddButtonClicked: false
         }
     }
+
     componentDidMount = async () => {
+        this.fetchUser();
+        this.fetchAlbums();
+    }
+
+    fetchUser = async() => {
         const user = await (await fetch('/api/current-user', {
             method: "GET",
             headers: {
                 'jwt-token': this.state.isLoggedIn,
             }
         })).json();
+        this.setState({
+            user: user
+        });
+    }
 
+    fetchAlbums = async() => {
         const albums = await (await fetch('/api/current-user/albums', {
             method: "GET",
             headers: {
@@ -31,22 +43,35 @@ export default class UserCollection extends Component {
         })).json();
 
         this.setState({
-            user: user,
             userAlbums: albums
         });
     }
 
     addButtonClick = () => {
         this.setState({
-            isAddButtonClicked: true
-        })
+            page: "album-list"
+        });
+    }
+
+    deleteAlbum = async (id) => {
+        console.log(id);
+        const deleteAlbum = await (await fetch('/api/current-user/albums', {
+            method: "DELETE",
+            body: JSON.stringify({ albumId: id }),
+            headers: {
+                'Content-Type': 'application/json',
+                'jwt-token': this.state.isLoggedIn
+            }
+        })).json();
+        this.fetchUser();
+        this.fetchAlbums();
     }
 
     render() {
         return (
             <Router>
                 <div>
-                    {this.state.isAddButtonClicked === false && (
+                    {this.state.page === 'user-collection' && (
                         <div className="user-collection-container">
                             <h1>Welcome {this.state.user.name}</h1>
                             <div className="user-container">
@@ -64,25 +89,26 @@ export default class UserCollection extends Component {
                                 {this.state.userAlbums.length > 0 && this.state.userAlbums.map(userAlbum => {
                                     return (
                                         <UserAlbum
+                                            key={userAlbum.id}
                                             albumImgSrc={userAlbum.coverPictureSrc}
                                             albumTitle={userAlbum.title}
                                             albumArtist={userAlbum.artist}
+                                            onClickDeleteButton={() => this.deleteAlbum(userAlbum.id)}
                                         />
                                     )
-
                                 }
                                 )}
                             </div>
                             <button onClick={this.addButtonClick}> <Link to='/albums'>"Add New Album"</Link></button>
                         </div>
                     )}
-                    {this.state.isAddButtonClicked === true && (
-                        <Route path="/albums" component={AlbumList}/>
+                    {this.state.page === 'album-list' && (
+                        console.log("album-list page!")
+                        // <Route path="/albums" component={AlbumList}/>
                     )}
                 </div>
             </Router>
         )
     }
-
 }
 
