@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import AlbumDetails from "../AlbumDetails";
 
 export default class Album extends Component {
   render() {
@@ -12,9 +13,12 @@ export default class Album extends Component {
           <div><img src={`images/${this.props.coverPictureSrc}`}></img></div>
           <button
             className="add-album-butom"
-            type="button"
             onClick={this.props.onClickAddButton}>Add to my list</button>
-          <button> <Link to='/albums'>"Add New Album"</Link></button>
+          <button
+          className="see-details-buttom"> <Link to='/albums/:id'>See details</Link></button>
+          <Route exact path="/albums/:id" 
+          render={(props) => <AlbumDetails {...props}/>}
+          />
       </div>
       </Router>
 
