@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Link } from 'react-router-dom';
 
 export default class Album extends Component {
   render() {
     return (
-      <Router>
+      // <Router>
         <div>
           <div>{this.props.title}</div>
           <div>{this.props.artist}</div>
@@ -14,9 +14,9 @@ export default class Album extends Component {
             className="add-album-butom"
             type="button"
             onClick={this.props.onClickAddButton}>Add to my list</button>
-          <button> <Link to='/albums'>"Add New Album"</Link></button>
+          {/* <button> <Link to='/albums'>"Add New Album"</Link></button> */}
       </div>
-      </Router>
+      // </Router>
 
     )
   }
