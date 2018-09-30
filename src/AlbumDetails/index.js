@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import UserWithSameTaste from '../UserWithSameTaste';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 export default class AlbumDetails extends Component {
@@ -59,6 +60,8 @@ export default class AlbumDetails extends Component {
             <div>{this.state.album.description}</div>
           </div>
         </div>
+        <UserWithSameTaste 
+        id={this.props.match.params.id}/>
     </div>
 
   )
