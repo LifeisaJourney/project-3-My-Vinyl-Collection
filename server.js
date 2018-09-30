@@ -13,10 +13,11 @@ const jwtSecret = 'secret189230';
 
 app.get('/api/albums', async (req, res) => {
   let album = {};
-  if (req.query.albumTitle) {
+  if (req.query.title) {
+    const title = req.query.title.replace('+',' ');
     album = {
       where: {
-        title: req.query.albumTitle
+        title: title
       }
     }
   }
@@ -176,7 +177,7 @@ app.delete('/api/current-user/albums', async (req, res) => {
 });
 
 app.get('/api/albums/:id', async (req, res) => {
-  const id = req.params.id;
+  const id = req.params.albumId;
   const album = await Album.findOne({
     where: {
       id: id
