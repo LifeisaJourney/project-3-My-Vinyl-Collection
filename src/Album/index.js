@@ -9,6 +9,7 @@ export default class Album extends Component {
   }
   render() {
     return (
+
       <div className="album-container" onClick={this.albumClick}>
         <Link to={`/albums/${this.props.id}`}>
           <div>{this.props.title}</div>
