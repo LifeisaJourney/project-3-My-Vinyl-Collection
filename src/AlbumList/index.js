@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import Album from "../Album";
 
 export default class AlbumList extends Component {
@@ -8,6 +8,8 @@ export default class AlbumList extends Component {
     this.state = {
       albums: [],
       user: {},
+      title:'',
+      album:{}
     }
   }
   componentDidMount = async () => {
@@ -44,7 +46,18 @@ export default class AlbumList extends Component {
       }
     })
     this.fetchUser();
+  }
 
+  inputChange = (event) => {
+    event.preventDefault();
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
+  getAlbum = async(event) => {
+    event.preventDefault();
+    this.fetchAlbums();
   }
 
   render() {
@@ -52,23 +65,26 @@ export default class AlbumList extends Component {
       <div>
         <div className="album-list-page">
           <h1>Select one of the albums from our list</h1>
-          <div className="album-list-container">
-            {this.state.albums.map(album => {
-              return (
-                <Album
-                  key={album.id}
-                  id={album.id}
-                  title={album.title}
-                  artist={album.artist}
-                  coverPictureSrc={album.coverPictureSrc}
-                  rating={album.rating}
-                  description={album.description}
-                  addedAlbum={this.state.user.albumId === album.id}
-                  onClickAddButton={() => this.addAlbum(album.id)}
-                />
-              )
-            })}
-          </div>
+          <form className="album-search-input">
+            <label>Search Album By Title: </label>
+            <input type='text' name='title' value={this.state.title} placeholder='Album Title' onChange={this.inputChange}></input>
+            <button type='button' onClick={this.getAlbum}>Submit</button>
+          </form>
+        </div>
+        <div className="album-list-container">
+          {this.state.albums.map(album => {
+            return (
+              <Album
+                key={album.id}
+                id={album.id}
+                title={album.title}
+                artist={album.artist}
+                coverPictureSrc={album.coverPictureSrc}
+                addedAlbum={this.state.user.albumId === album.id}
+                onClickAddButton={() => this.addAlbum(album.id)}
+              />
+            )
+          })}
         </div>
       </div>
     )
