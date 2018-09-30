@@ -61,6 +61,8 @@ export default class AlbumList extends Component {
                   title={album.title}
                   artist={album.artist}
                   coverPictureSrc={album.coverPictureSrc}
+                  rating={album.rating}
+                  description={album.description}
                   addedAlbum={this.state.user.albumId === album.id}
                   onClickAddButton={() => this.addAlbum(album.id)}
                 />
