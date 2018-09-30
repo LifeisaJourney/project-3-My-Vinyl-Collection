@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import AlbumDetails from '../AlbumDetails';
 
 export default class Album extends Component {
+
   albumClick = async (id) => {
     this.setState({
       id: id
@@ -17,6 +19,8 @@ export default class Album extends Component {
           <div>{this.props.releaseYear}</div>
           <div><img src={`images/${this.props.coverPictureSrc}`}></img></div>
         </Link>
+        <Route exact path={`/albums/${this.props.id}`}
+          render={(props) => <AlbumDetails {...props} />} />
         <button
           className="add-album-butom"
           type="button"
