@@ -27,6 +27,7 @@ export default class UserWithSameTaste extends Component {
 
     return (
       <div>
+        {this.state.userMates.length > 0 && (
         <div className="usermate-list-container">
           <h2>Check out who also owns this album</h2>
           <div>
@@ -44,6 +45,7 @@ export default class UserWithSameTaste extends Component {
             })}
           </div>
         </div>
+        )}
       </div>
 
 
