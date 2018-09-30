@@ -61,7 +61,6 @@ export default class UserCollection extends Component {
 
     render() {
         return (
-          <Router>
             <div>
                 <div className="user-collection-container">
                     <h1>Welcome {this.state.user.name}</h1>
@@ -95,7 +94,6 @@ export default class UserCollection extends Component {
                 </div>
                 <Route exact path="/albums" component={AlbumList} />
             </div>
-          </Router>
         )
     }
 }
