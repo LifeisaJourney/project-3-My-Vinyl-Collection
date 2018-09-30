@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import "./style.css";
-import Register from '../Register';
-import UserCollection from "../UserCollection";
-import AlbumList from'../AlbumList';
 import Login from "../Login";
+import Register from '../Register';
 import PrivateRoute from "../PrivateRoute";
+import UserCollection from "../UserCollection";
+import AlbumList from '../AlbumList';
+import AlbumDetails from '../AlbumDetails';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 class App extends Component {
@@ -29,6 +30,7 @@ class App extends Component {
           </nav>
           <Switch>
             <PrivateRoute exact path="/albums" component={AlbumList} />
+            <PrivateRoute exact path='/albums/:id' component={AlbumDetails} />
             <PrivateRoute exact path='/my-collection' component={UserCollection} />
             <Route exact path='/' component={Login} />
             <Route exact path='/register' component={Register} />
