@@ -82,6 +82,7 @@ export default class UserCollection extends Component {
                             return (
                                 <UserAlbum
                                     key={userAlbum.id}
+                                    id={userAlbum.id}
                                     albumImgSrc={userAlbum.coverPictureSrc}
                                     albumTitle={userAlbum.title}
                                     albumArtist={userAlbum.artist}
