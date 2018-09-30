@@ -9,11 +9,14 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 class App extends Component {
 
+  logOut = () => {
+    localStorage.clear();
+  }
+
   render() {
     return (
       <Router>
         <div className="App">
-
           <h1 className='welcome-screen-title'>Welcome to My Vinyl Collection</h1>
           <nav>
             <Link to='/my-collection'>My Collection  </Link>
@@ -23,6 +26,9 @@ class App extends Component {
             &nbsp;
             &nbsp;
             <Link to='/register'>Register </Link>
+            &nbsp;
+            &nbsp;
+            <Link to='/' onClick={this.logOut}>Log out </Link>
           </nav>
           <Switch>
             <PrivateRoute exact path="/albums" component={AlbumList} />

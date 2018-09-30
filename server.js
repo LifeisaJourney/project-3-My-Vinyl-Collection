@@ -12,28 +12,29 @@ app.use(bodyParser.json());
 const jwtSecret = 'secret189230';
 
 app.get('/api/albums', async (req, res) => {
-  const allAlbums = await Album.findAll({});
+  let album = {};
+  if (req.query.albumTitle) {
+    album = {
+      where: {
+        title: req.query.albumTitle
+      }
+    }
+  }
+  const allAlbums = await Album.findAll(album);
   res.json(allAlbums);
 });
 
 app.post('/api/register', async (req, res) => {
   const { username, password, name, email, pictureSrc, city } = req.body;
-  if (!username || !password) {
-    res.status(401).json({ message: 'Username and password are required for registration' });
-    return;
-  }
 
   const existingUser = await User.findOne({
     where: {
-      $and:[{
-        username: username,
-      }]
-      
+      username: username
     }
   });
 
   if (existingUser) {
-    res.status(409).json({ message: 'This username and password already exists' });
+    res.status(409).json({ message: 'This username already exists' });
     return;
   } else {
     const passwordDigest = await bcrypt.hash(password, 12);
@@ -43,10 +44,10 @@ app.post('/api/register', async (req, res) => {
       username: username,
       passwordDigest: passwordDigest,
       email: email,
-      pictureSrc: pictureSrc,
+      pictureSrc: pictureSrc.name,
       city: city
     });
-  
+
     const token = jwt.sign({ userId: newUser.id }, jwtSecret);
     res.json({ token: token });
   }
@@ -174,14 +175,29 @@ app.delete('/api/current-user/albums', async (req, res) => {
   res.sendStatus(200);
 });
 
-app.get('api/albums/:id', async(req,res) => {
-  const { albumId } = req.params;
+app.get('/api/albums/:id', async (req, res) => {
+  const id = req.params.id;
   const album = await Album.findOne({
-    where:{
-      id: albumId
+    where: {
+      id: id
     }
   });
   res.json(album);
+});
+
+app.get('/api/albums/:id/users', async (req, res) => {
+  const id = req.params.id;
+  const albumUsers = await User.findAll({
+    include: [
+      {
+        model: Album,
+        where: {
+          id: id
+        }
+      }
+    ]
+  });
+  res.json(albumUsers);
 })
 
 app.listen(PORT, () => {

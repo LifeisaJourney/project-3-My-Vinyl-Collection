@@ -209,7 +209,7 @@ const main = async () => {
   const fred = await User.create({
     name: "Fred Astair",
     username: "fred",
-    passwordDigest: "$2a$10$pvBwELhWom3/uH7trsQRbOQtxOVt8ZWFSWWNLI5hD/dDZxpJH0dje",
+    passwordDigest: "$2a$12$OL80z0Mhp4ZzTVjKSVzUGu4nlXWksp07fxwApYQX5ASaL0dPjhT/O",
     email:"fred@gmail.com",
     city: "New York"
   });

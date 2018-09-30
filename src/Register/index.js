@@ -14,8 +14,10 @@ export default class Register extends Component {
       city: '',
       message: '',
       valid: false,
+      usernameValidationMessge: '',
       emailValidationMessage: '',
       passwordValidationMessage: '',
+      usernameBorder: '',
       emailBorder: '',
       passwordBorder: '',
     }
@@ -32,11 +34,18 @@ export default class Register extends Component {
     let emailRegex = /@/;
     let specialCharacterPattern = /[!@()#$%&'*+/=?^_`{|}~-]+/;
     let numberPattern = /\d/;
+    let usernameRedBorder;
     let emailRedBorder;
     let passwordRedBorder;
+    let usernameMessage;
     let emailMessage;
     let passwordMessage;
 
+    if (this.state.username.length === 0) {
+      isValid = false;
+      usernameRedBorder = 'solid 2px red';
+      usernameMessage = 'A username is required for registration';
+    }
     if (!emailRegex.exec(this.state.email)) {
       isValid = false;
       emailRedBorder = 'solid 2px red';
@@ -49,14 +58,17 @@ export default class Register extends Component {
     }
     this.setState({
       valid: isValid,
+      usernameBorder: usernameRedBorder,
       emailBorder: emailRedBorder,
       passwordBorder: passwordRedBorder,
+      usernameValidationMessge: usernameMessage,
       emailValidationMessage: emailMessage,
       passwordValidationMessage: passwordMessage
     });
   }
 
-  register = async () => {
+  register = async (event) => {
+    event.preventDefault();
     this.isEmailPasswordValid();
 
     if (this.state.valid) {
@@ -78,19 +90,20 @@ export default class Register extends Component {
       });
 
       const responseBody = await response.json();
-      if (responseBody.status === 409 || responseBody.status === 401) {
+      if (response.status === 409) {
         this.setState({
           message: responseBody.message
         });
         return;
-      } else {
-        localStorage.setItem('user-jwt', responseBody.token);
-        this.setState({
-          redirectToReferrer: true,
-        });
       }
+
+      localStorage.setItem('user-jwt', responseBody.token);
+      this.setState({
+        redirectToReferrer: true,
+      });
     }
   }
+
   render() {
     const emailStyle = {
       border: this.state.emailBorder,
@@ -100,6 +113,11 @@ export default class Register extends Component {
       border: this.state.passwordBorder,
       outline: 'none',
     }
+    const usernameStyle = {
+      border: this.state.usernameBorder,
+      outline: 'none',
+    }
+
     const { from } = this.props.location.state || { from: { pathname: "/my-collection" } };
     const { redirectToReferrer } = this.state;
 
@@ -114,7 +132,7 @@ export default class Register extends Component {
           <input type='text' placeholder='Name' onChange={this.onInputChange} name='name' value={this.state.name}>
           </input>
           <label>User name: </label>
-          <input type='text' placeholder='User name' onChange={this.onInputChange} name='username' value={this.state.username}>
+          <input type='text' placeholder='User name' onChange={this.onInputChange} name='username' value={this.state.username} style={usernameStyle}>
           </input>
           <label>Email: </label>
           <input type='text' placeholder='email' onChange={this.onInputChange} name='email' value={this.state.email} style={emailStyle}>
