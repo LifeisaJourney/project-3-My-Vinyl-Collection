@@ -14,7 +14,7 @@ export default class Album extends Component {
             className="add-album-butom"
             type="button"
             onClick={this.props.onClickAddButton}>Add to my list</button>
-          <button> <Link to='/albums'>"Add New Album"</Link></button>
+          {/* <button> <Link to='/albums'>"Add New Album"</Link></button> */}
       </div>
       </Router>
 

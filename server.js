@@ -99,7 +99,6 @@ app.get('/api/current-user', async (req, res) => {
 
 app.post('/api/current-user/albums', async (req, res) => {
   const token = req.headers['jwt-token'];
-  console.log(token);
 
   let tokenData;
   try {
@@ -174,6 +173,16 @@ app.delete('/api/current-user/albums', async (req, res) => {
   });
   res.sendStatus(200);
 });
+
+app.get('api/albums/:id', async(req,res) => {
+  const { albumId } = req.params;
+  const album = await Album.findOne({
+    where:{
+      id: albumId
+    }
+  });
+  res.json(album);
+})
 
 app.listen(PORT, () => {
   console.log(`Express server listening on port ${PORT}`);
