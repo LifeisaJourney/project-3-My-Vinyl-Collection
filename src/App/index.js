@@ -22,9 +22,6 @@ class App extends Component {
             <Link to='/my-collection'>My Collection  </Link>
             &nbsp;
             &nbsp;
-            <Link to='/'>Log in  </Link>
-            &nbsp;
-            &nbsp;
             <Link to='/register'>Register </Link>
             &nbsp;
             &nbsp;

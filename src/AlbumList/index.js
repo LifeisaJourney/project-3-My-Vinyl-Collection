@@ -5,7 +5,6 @@ import Album from "../Album";
 export default class AlbumList extends Component {
   constructor(props) {
     super(props);
-    const token = localStorage.getItem('user-jwt');
     this.state = {
       albums: [],
       user: {},
