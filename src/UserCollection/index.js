@@ -61,13 +61,12 @@ export default class UserCollection extends Component {
 
     render() {
         return (
-          <Router>
             <div>
                 <div className="user-collection-container">
-                    <h1>Welcome {this.state.user.name}</h1>
+                    <h1 className='personalize-welcome'>Welcome {this.state.user.name}!</h1>
                     <div className="user-container">
                         <div className="user-img-container">
-                            <img src={this.state.user.pictureSrc} alt='user-picture' />
+                            <img className='user-profile-pic' src={this.state.user.pictureSrc} alt='user-picture' />
                         </div>
                         <div className="user-info">
                             <h2>User Name: {this.state.user.username}</h2>
@@ -76,7 +75,9 @@ export default class UserCollection extends Component {
                         </div>
                     </div>
                     <div className="album-collection-container">
-                        <h2>Your Vinyl Collection</h2>
+                        <div className='vinyl-collection'>
+                            <h2 className='vinyl-collection-h2'>Your Vinyl Collection</h2>
+                        </div>
                         {this.state.userAlbums.length > 0 && this.state.userAlbums.map(userAlbum => {
                             return (
                                 <UserAlbum
@@ -90,12 +91,12 @@ export default class UserCollection extends Component {
                         }
                         )}
                     </div>
-                    <button> <Link to='/albums'>"Add New Album"</Link></button>
-
+                    <div className='add-button-div'>
+                        <button className='addition-button'> <Link to='/albums'>Add New Album</Link></button>
+                    </div>
                 </div>
                 <Route exact path="/albums" component={AlbumList} />
             </div>
-          </Router>
         )
     }
 }

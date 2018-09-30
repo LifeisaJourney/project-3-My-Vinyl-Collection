@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+// import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Album from "../Album";
 
 export default class AlbumList extends Component {
   constructor(props) {
     super(props);
-    const token = localStorage.getItem('user-jwt');
     this.state = {
       albums: [],
       user: {},
@@ -50,7 +49,7 @@ export default class AlbumList extends Component {
 
   render() {
     return (
-      <Router>
+      // <Router>
         <div>
           <div className="albuns-list-page">
             <h1>Select one of the albums from our list</h1>
@@ -74,7 +73,7 @@ export default class AlbumList extends Component {
             </div>
           </div>
         </div>
-      </Router>
+      // </Router>
     )
   }
 }

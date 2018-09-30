@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 export default class Login extends Component {
   constructor(props) {
     super(props)
-    const token = localStorage.getItem('user-jwt');
     this.state = {
       redirectToReferrer: false,
       username: '',
@@ -43,7 +42,7 @@ export default class Login extends Component {
     localStorage.setItem('user-jwt', responseBody.token);
     this.setState({
       redirectToReferrer: true,
-    })
+    });
   }
 
   render() {
