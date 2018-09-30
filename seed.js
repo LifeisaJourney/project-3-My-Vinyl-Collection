@@ -99,7 +99,7 @@ const main = async () => {
     artist: "Miles Davis",
     releaseYear: 1960,
     genre: "Jazz",
-    coverPictureSrc: "bob-dylan.jpg",
+    coverPictureSrc: "miles-davis.jpg",
     rating: 5,
     description: `Sketches of Spain is an album by Miles Davis, recorded between November 1959 and March 1960 at the Columbia 30th Street Studio in New York City. An extended version of the second movement of Joaquín Rodrigo's Concierto de Aranjuez (1939) is included, as well as a piece called "Will o' the Wisp", from Manuel de Falla's ballet El amor brujo (1914–1915). Sketches of Spain is regarded as an exemplary recording of Third Stream, a musical fusion of jazz, European classical, and styles from world music".`
   });
@@ -209,7 +209,7 @@ const main = async () => {
   const fred = await User.create({
     name: "Fred Astair",
     username: "fred",
-    passwordDigest: "$2a$10$pvBwELhWom3/uH7trsQRbOQtxOVt8ZWFSWWNLI5hD/dDZxpJH0dje",
+    passwordDigest: "$2a$12$OL80z0Mhp4ZzTVjKSVzUGu4nlXWksp07fxwApYQX5ASaL0dPjhT/O",
     email:"fred@gmail.com",
     city: "New York"
   });

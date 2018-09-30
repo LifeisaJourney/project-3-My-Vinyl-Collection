@@ -13,7 +13,7 @@ export default class UserAlbum extends Component {
                     <h3>{this.props.albumTitle}</h3>
                     <h3>{this.props.albumArtist}</h3>
                 </div>
-                <button onClick={this.props.onClickDeleteButton}>Delete From Collection</button>
+                <button className='deletion-button' onClick={this.props.onClickDeleteButton}>Delete From Collection</button>
             </div>
 
         )
