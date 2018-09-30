@@ -177,7 +177,7 @@ app.delete('/api/current-user/albums', async (req, res) => {
 });
 
 app.get('/api/albums/:id', async (req, res) => {
-  const id = req.params.albumId;
+  const id = req.params.id;
   const album = await Album.findOne({
     where: {
       id: id
