@@ -34,16 +34,16 @@ export default class AlbumDetails extends Component {
               <h2>Album Title</h2>
               <div className='return-input'>{this.state.album.title}</div>
             </div>
-            <div className="a1 album-artist">
+            <div className="album-artist">
               <h2>Artist</h2>
               <div className='return-input'>{this.state.album.artist}</div>
             </div>
-            <div className="a1 album-release">
+            <div className="album-release">
               <h2>Release Year</h2>
               <div className='return-input'>{this.state.album.releaseYear}
               </div>
             </div>
-            <div className="a1 album-genre">
+            <div className="album-genre">
               <h2>Genre</h2>
               <div className='return-input'>{this.state.album.genre}</div>
             </div>
@@ -53,10 +53,10 @@ export default class AlbumDetails extends Component {
               <h2>Cover</h2>
               <img className="album-image-individual" src={`../images/${this.state.album.coverPictureSrc}`} />
             </div>
-            <div className="a1 album-rating">
+            <div className="album-rating">
               <h2 className='return-input'>Rating: <span> {this.state.album.rating}</span></h2>
             </div>
-            <div className="a1 album-description">
+            <div className="album-description">
               <h2>Description</h2>
               <div className='return-input'>{this.state.album.description}</div>
             </div>
