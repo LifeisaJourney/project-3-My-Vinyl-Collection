@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import AlbumDetails from '../AlbumDetails';
+import "./style.css";
 
 export default class Album extends Component {
 
@@ -11,15 +12,14 @@ export default class Album extends Component {
         <Link to={`/albums/${this.props.id}`}>
           <div>{this.props.title}</div>
           <div>{this.props.artist}</div>
-          <div>{this.props.releaseYear}</div>
-          <div><img src={`images/${this.props.coverPictureSrc}`}></img></div>
+          <div><img className='album-image-solo' src={`images/${this.props.coverPictureSrc}`}></img></div>
         </Link>
         <Route exact path={`/albums/${this.props.id}`}
           render={(props) => <AlbumDetails {...props} />} />
         <button
-          className="add-album-butom"
+          className="add-album-button"
           type="button"
-          onClick={this.props.onClickAddButton}>Add to my list</button>
+          onClick={this.props.onClickAddButton}>Add To Collection</button>
       </div>
     )
   }

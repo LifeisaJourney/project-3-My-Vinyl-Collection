@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import UserWithSameTaste from '../UserWithSameTaste';
 import { BrowserRouter as Router } from 'react-router-dom';
-
+import "./style.css";
 export default class AlbumDetails extends Component {
   constructor(props) {
     super(props);
@@ -48,7 +48,7 @@ export default class AlbumDetails extends Component {
           </div>
           <div className="album-image-container">
             <h2>Cover</h2>
-            <img className="album-image" src={`../images/${this.state.album.coverPictureSrc}`}></img>
+            <img className="album-image-individual" src={`../images/${this.state.album.coverPictureSrc}`}></img>
           </div>
           <div className="album-rating">
             <h2>Rating: <span> {this.state.album.rating}</span></h2>
