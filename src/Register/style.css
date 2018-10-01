@@ -35,6 +35,7 @@ input[type=text][type=password]{
   border-radius: 4px;
   background-color: #FF9F1C;
   width: 20%;
+  cursor: pointer;
 }
 .register-button:hover{
   background-color: #011627;
