@@ -1,0 +1,22 @@
+*{
+    box-sizing:border-box;
+}
+.album-image-individual {
+    height: 300px;
+    width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: #A8D0FF solid;
+    border-radius: 3%;
+}
+/* 
+img {
+    height: 300px;
+    width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: #A8D0FF solid;
+    border-radius: 3%;
+} */
