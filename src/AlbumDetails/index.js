@@ -11,7 +11,9 @@ export default class AlbumDetails extends Component {
   }
 
   componentDidMount = async () => {
-    this.fetchAlbum()
+    this.scrollToTop();
+    this.fetchAlbum();
+    
   }
 
   fetchAlbum = async () => {
@@ -21,6 +23,10 @@ export default class AlbumDetails extends Component {
     this.setState({
       album: album
     })
+  }
+
+  scrollToTop = () => {
+    window.scrollTo(0,0);
   }
 
   calculateRatingStars = () => {
