@@ -19,9 +19,8 @@ export default class AlbumList extends Component {
   }
   fetchAlbums = async () => {
     let url='';
-    let title=this.state.title
-    if(this.state.title){
-      url+=`?title=${title}`
+    if(this.state.title.length>0){
+      url+=`?title=${this.state.title}`
     }
     const response = await fetch('api/albums'+url)
     const albums = await response.json();
@@ -63,6 +62,14 @@ export default class AlbumList extends Component {
   getAlbum = async(event) => {
     event.preventDefault();
     this.fetchAlbums();
+    this.setState({
+      title:''
+    });
+  }
+
+  getAllAlbums = async(event) => {
+    event.preventDefault();
+    this.fetchAlbums();
   }
 
   render() {
@@ -70,10 +77,11 @@ export default class AlbumList extends Component {
       <div>
         <div className="album-list-page" >
           <h1>Select one of the albums from our list</h1>
+          <button onClick={this.getAllAlbums}>View Full Album List</button>
           <form className="album-search-input" onSubmit={this.getAlbum}>
             <label>Search Album By Title: </label>
             <input type='text' name='title' value={this.state.title} placeholder='Album Title' onChange={this.inputChange}></input>
-            <button type='button'>Submit</button>
+            <button type='button' onClick={this.getAlbum}>Submit</button>
           </form>
         </div>
         <div className="album-list-container">
