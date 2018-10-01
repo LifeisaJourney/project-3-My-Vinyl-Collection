@@ -65,13 +65,16 @@ export default class Register extends Component {
       emailValidationMessage: emailMessage,
       passwordValidationMessage: passwordMessage
     });
-    return this.state.valid
+  }
+
+  isValid = () => {
+    this.isEmailPasswordValid();
   }
 
   register = async (event) => {
     event.preventDefault();
 
-    if (this.isEmailPasswordValid()) {
+    if (this.state.valid) {
       const requestBody = JSON.stringify({
         name: this.state.name,
         email: this.state.email,
@@ -149,8 +152,15 @@ export default class Register extends Component {
           <label>City: </label>
           <input type='text' placeholder='City' onChange={this.onInputChange} name='city' value={this.state.city}>
           </input><br />
-          <button>Register</button>
+          {this.state.valid && (
+            <button>Register</button>
+          )}
         </form>
+        
+        {!this.state.valid &&(
+          <button onClick={this.isValid}>Ok</button>
+        )}
+        
         {
           this.state.message &&
           <h3>{this.state.message}</h3>
