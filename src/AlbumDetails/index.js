@@ -64,42 +64,49 @@ export default class AlbumDetails extends Component {
     return (
 
       <div>
-        <div className="album-container">
+        <div className="album-container-list">
         <button
           className="add-album-button"
           type="button"
           onClick={this.AddToCollectionButton}>Add To Collection</button>
-          <div className="album-tittle">
-            <h2>Album Title</h2>
-            <div>{this.state.album.title}</div>
-          </div>
-          <div className="album-artist">
-            <h2>Artist</h2>
-            <div>{this.state.album.artist}</div>
-          </div>
-          <div className="album-release">
-            <h2>Release Year</h2>
-            <div>{this.state.album.releaseYear}
+          <div className='side-panel-1'>
+            <div className="album-tittle">
+              <h2>Album Title</h2>
+              <div className='return-input'>{this.state.album.title}</div>
+            </div>
+            <div className="album-artist">
+              <h2>Artist</h2>
+              <div className='return-input'>{this.state.album.artist}</div>
+            </div>
+            <div className="album-release">
+              <h2>Release Year</h2>
+              <div className='return-input'>{this.state.album.releaseYear}
+              </div>
+            </div>
+            <div className="album-genre">
+              <h2>Genre</h2>
+              <div className='return-input'>{this.state.album.genre}</div>
             </div>
           </div>
-          <div className="album-genre">
-            <h2>Genre</h2>
-            <div>{this.state.album.genre}</div>
-          </div>
-          <div className="album-image-container">
-            <h2>Cover</h2>
-            <img className="album-image-individual" src={`../images/${this.state.album.coverPictureSrc}`}/>
-          </div>
-          <div className="album-rating">
-            <h2>Rating: <span> {this.calculateRatingStars()}</span></h2>
-          </div>
-          <div className="album-description">
-            <h2>Description</h2>
-            <div>{this.state.album.description}</div>
+          <div className='side-panel-2'>
+            <div className="album-image-container">
+              <h2>Cover</h2>
+              <img className="album-image-individual" src={`../images/${this.state.album.coverPictureSrc}`} />
+            </div>
+            <div className="album-rating">
+              <h2 className='return-input'>Rating: <span> {this.state.album.rating}</span></h2>
+            </div>
+            <div className="album-description">
+              <h2>Description</h2>
+              <div className='return-input'>{this.state.album.description}</div>
+            </div>
+
           </div>
         </div>
-        <UserWithSameTaste
-          id={this.props.match.params.id} />
+        <div className='same-taste'>
+          <UserWithSameTaste
+            id={this.props.match.params.id} />
+        </div>
       </div>
     )
   }

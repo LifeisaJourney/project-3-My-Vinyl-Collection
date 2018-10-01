@@ -20,3 +20,29 @@ img {
     border: #A8D0FF solid;
     border-radius: 3%;
 } */
+
+.album-container-list{
+    margin: -20px auto;
+    width: 100%;
+}
+/* .return-input{
+    font-family: 'Gudea', sans-serif;
+}
+
+.album-container-list {
+    font-size: 18px;
+    padding: 0px;
+}
+
+
+.side-panel-1, .side-panel-2{
+    display:flex;
+}
+
+.side-panel-1{
+    flex-direction: column;
+}
+
+.side-panel-2{
+    flex-direction: 
+} */

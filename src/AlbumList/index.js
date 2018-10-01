@@ -76,10 +76,10 @@ export default class AlbumList extends Component {
     return (
       <div>
         <div className="album-list-page" >
-          <h1>Select one of the albums from our list</h1>
-          <button onClick={this.getAllAlbums}>View Full Album List</button>
+          <h1 className='select-from-list'>Select one of the albums from our list</h1>
+          <button className ='view-album-button' onClick={this.getAllAlbums}>View Full Album List</button>
           <form className="album-search-input" onSubmit={this.getAlbum}>
-            <label>Search Album By Title: </label>
+            <label className='album-list-title'>Search Album By Title: </label>
             <input type='text' name='title' value={this.state.title} placeholder='Album Title' onChange={this.inputChange}></input>
             <button type='button' onClick={this.getAlbum}>Submit</button>
           </form>
