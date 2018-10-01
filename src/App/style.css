@@ -1,12 +1,13 @@
-*{
+* {
     box-sizing: border-box;
 }
 
-body{
+body {
     font-family: 'Roboto Condensed', sans-serif;
 }
 
-.welcome-screen-title{
+
+.welcome-screen-title {
     font-size: 50px;
     text-decoration: underline;
     text-align: center;
@@ -14,93 +15,13 @@ body{
     margin: 10px auto;
 }
 
-nav{
+a {
+    text-decoration: none;
+    color: #5386E4;
+}
+
+nav {
     text-align: center;
     margin: 10px auto;
 } 
 
-.personalize-welcome {
-    font-size: 30px;
-    text-decoration: none;
-    text-align: center;
-    width: 100%;
-    margin: 0px auto; 
-    font-family: 'Gudea', sans-serif;
-}
-
-.user-container{
-    display:flex;
-    width: 100%;
-    margin: 10px;
-    flex-wrap: wrap;
-}
-.user-img-container{
-    margin: 0 auto;
-    padding: 10px;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.user-info{
-    width: 50%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    text-align: left;
-}
-
-.user-profile-pic{
-    width: 300px;
-    height: 300px;
-    border: black solid;
-    margin: 0 auto;
-    display: flex;
-}
-h2{
-    margin: 0;
-    padding:10px;
-}
-
-.vinyl-collection-h2{
-    font-family: 'Gudea', sans-serif;
-    font-size: 30px;
-    text-align: center;
-}
-
-.user-collection-container{
-    border-top: 1px solid gray;
-    padding-top: 10px;
-}
-
-.album-collection-container{
-    display:flex;
-    /* flex-wrap: wrap; */
-    /* justify-content: center; */
-    flex-wrap: wrap;
-    border-top:1px solid gray;
-    padding-top:16px;
-}
-
-.vinyl-collection{
-    width:100%;
-}
-
-.album-image{
-    height:200px;
-    width:200px;
-    margin:10px;
-    border: #A8D0FF solid;
-}
-
-.deletion-button{
-    font-size: 12px;
-}
-
-.addition-button{
-    font-size: 12px; 
-}
-
-.album-info-container{
-    
-}

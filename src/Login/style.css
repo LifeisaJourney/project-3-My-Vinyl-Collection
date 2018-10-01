@@ -1,0 +1,35 @@
+/* USER NAME & PASSWORD text */
+label {
+    font-size: 15px;
+    padding-left: 10px;
+}
+    
+input[type=text] {
+        color: #BFEDEF;
+        width: 20%;
+        box-sizing: border-box;
+        margin: 8px 0; 
+}
+    
+/* Buttons commented to be refactored to match with entire app 
+i.e. button works on login page but not in add collection  */
+    
+/* button {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    margin-top: auto;
+    background-color: #5386E4;
+    border: none;
+    padding: 8px 82px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #FFFFFF;
+} */
+    
+h4 {
+    font-size: 30px;
+    color: #E03616;
+}
+    
