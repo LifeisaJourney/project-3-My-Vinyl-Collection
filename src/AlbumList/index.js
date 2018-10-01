@@ -9,25 +9,28 @@ export default class AlbumList extends Component {
     this.state = {
       albums: [],
       user: {},
-      title:'',
-      album:{}
+      title: '',
+      album: {}
     }
   }
   componentDidMount = async () => {
+    this.scrollToTop();
     this.fetchAlbums();
     this.fetchUser();
   }
+
   fetchAlbums = async () => {
-    let url='';
-    if(this.state.title.length>0){
-      url+=`?title=${this.state.title}`
+    let url = '';
+    if (this.state.title.length > 0) {
+      url += `?title=${this.state.title}`
     }
-    const response = await fetch('/api/albums'+url)
+    const response = await fetch('/api/albums' + url)
     const albums = await response.json();
     this.setState({
       albums: albums
     })
   }
+
   fetchUser = async () => {
     const response = await fetch('/api/current-user', {
       headers: {
@@ -38,6 +41,10 @@ export default class AlbumList extends Component {
     this.setState({
       user: user
     });
+  }
+
+  scrollToTop = () => {
+    window.scrollTo(0,0);
   }
 
   addAlbum = async id => {
@@ -59,15 +66,15 @@ export default class AlbumList extends Component {
     });
   }
 
-  getAlbum = async(event) => {
+  getAlbum = async (event) => {
     event.preventDefault();
     this.fetchAlbums();
     this.setState({
-      title:''
+      title: ''
     });
   }
 
-  getAllAlbums = async(event) => {
+  getAllAlbums = async (event) => {
     event.preventDefault();
     this.fetchAlbums();
   }
