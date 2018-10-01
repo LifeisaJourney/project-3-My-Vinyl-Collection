@@ -100,7 +100,7 @@ export default class AlbumDetails extends Component {
               <img className="album-image-individual" src={`../images/${this.state.album.coverPictureSrc}`} />
             </div>
             <div className="album-rating">
-              <h2 className='return-input'>Rating: <span> {this.state.album.rating}</span></h2>
+              <h2 className='return-input'>Rating: <span> {this.calculateRatingStars()}</span></h2>
             </div>
             <div className="album-description">
               <h2>Description</h2>

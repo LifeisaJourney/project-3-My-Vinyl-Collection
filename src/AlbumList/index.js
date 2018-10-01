@@ -93,9 +93,10 @@ export default class AlbumList extends Component {
         </div>
         <div className="album-list-container">
           {this.state.albums.map(album => {
+            let count=0;
             return (
               <Album
-                key={album.id}
+              key={album.id-`${count+=1}`}
                 id={album.id}
                 title={album.title}
                 artist={album.artist}
