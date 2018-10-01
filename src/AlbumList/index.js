@@ -22,7 +22,7 @@ export default class AlbumList extends Component {
     if(this.state.title.length>0){
       url+=`?title=${this.state.title}`
     }
-    const response = await fetch('api/albums'+url)
+    const response = await fetch('/api/albums'+url)
     const albums = await response.json();
     this.setState({
       albums: albums
@@ -37,11 +37,11 @@ export default class AlbumList extends Component {
     const user = await response.json();
     this.setState({
       user: user
-    })
+    });
   }
 
   addAlbum = async id => {
-    await fetch('api/current-user/albums', {
+    await fetch('/api/current-user/albums', {
       method: 'POST',
       body: JSON.stringify({ albumId: id }),
       headers: {

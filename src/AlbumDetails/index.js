@@ -35,6 +35,29 @@ export default class AlbumDetails extends Component {
     return yellowStarString;
   }
 
+  fetchUser = async () => {
+    const response = await fetch('/api/current-user', {
+      headers: {
+        'jwt-token': localStorage.getItem('user-jwt')
+      }
+    })
+    const user = await response.json();
+    this.setState({
+      user: user
+    });
+  }
+
+  AddToCollectionButton = async id => {
+    await fetch('/api/current-user/albums', {
+      method: 'POST',
+      body: JSON.stringify({ albumId: this.state.album.id }),
+      headers: {
+        'Content-Type': 'application/json',
+        'jwt-token': localStorage.getItem('user-jwt')
+      }
+    })
+    this.fetchUser();
+  }
 
   render() {
 
@@ -42,6 +65,10 @@ export default class AlbumDetails extends Component {
 
       <div>
         <div className="album-container">
+        <button
+          className="add-album-button"
+          type="button"
+          onClick={this.AddToCollectionButton}>Add To Collection</button>
           <div className="album-tittle">
             <h2>Album Title</h2>
             <div>{this.state.album.title}</div>
