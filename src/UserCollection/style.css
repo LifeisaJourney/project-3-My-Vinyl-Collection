@@ -1,10 +1,10 @@
 .personalize-welcome {
+    font-family: 'Fahkwang', sans-serif;
     font-size: 30px;
     text-decoration: none;
     text-align: center;
     width: 100%;
     margin: 0px auto; 
-    font-family: 'Gudea', sans-serif;
 }
 
 .user-container {
@@ -12,12 +12,12 @@
     width: 100%;
     margin: 10px;
     flex-wrap: wrap;
+    justify-content: center;
 }
 .user-img-container {
     margin: 0 auto;
     padding: 10px;
     display: flex;
-    justify-content: flex-end;
 }
 
 .user-info {
@@ -36,13 +36,14 @@
     margin: 0 auto;
     display: flex;
 }
+
+
 h2 {
     margin: 0;
     padding:10px;
 }
 
 .vinyl-collection-h2 {
-    font-family: 'Gudea', sans-serif;
     font-size: 30px;
     text-align: center;
 }
@@ -63,11 +64,12 @@ h2 {
     width:100%;
 }
 
-.album-image {
+.album-image{
     height:200px;
     width:200px;
     margin:10px;
     border: #A8D0FF solid;
+    border-radius: 3px;  
 }
 
 .album-container {
@@ -78,11 +80,7 @@ text-align: center;
     font-size: 12px;
 }
 
-.addition-button {
-    font-size: 12px; 
-}
-
-.album-info-container{
-  font-size: 12px;  
-  size: 100%;
+.album-info-container {
+    font-size-adjust: 12px;
+    size: 100px;
 }

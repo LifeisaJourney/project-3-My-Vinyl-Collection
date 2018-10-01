@@ -36,30 +36,30 @@ export default class UserCollection extends Component {
     render() {
         return (
             <div>
-                <div className="user-collection-container">
-                    <h1 className='personalize-welcome'>Welcome to {this.state.user.name}'s Page!</h1>
-                    <div className="user-container">
-                        <div className="user-img-container">
-                            <img className='user-profile-pic' src={this.state.user.pictureSrc} alt='user-picture' />
+                <div className="browse-user-collection-container">
+                    <h1 className='browse-user-personalize-welcome'>Welcome to {this.state.user.name}'s Page!</h1>
+                    <div className="browse-user-container">
+                        <div className="browse-user-img-container">
+                            <img className='browse-user-profile-pic' src={this.state.user.pictureSrc} alt='user-picture' />
                         </div>
-                        <div className="user-info">
+                        <div className="browse-user-info">
                             <h2>User Name: {this.state.user.username}</h2>
                             <h2>Email: {this.state.user.email}</h2>
                             <h2>City: {this.state.user.city}</h2>
                         </div>
                     </div>
-                    <div className="album-collection-container">
-                        <div className='vinyl-collection'>
-                            <h2 className='vinyl-collection-h2'>{this.state.user.name}'s Vinyl Collection</h2>
+                    <div className="browse-user-album-collection-container">
+                        <div className='browse-user-vinyl-collection'>
+                            <h2 className='browse-user-vinyl-collection-h2'>{this.state.user.name}'s Vinyl Collection</h2>
                         </div>
                         {this.state.userAlbums.length > 0 && this.state.userAlbums.map(userAlbum => {
                             return (
-                                <div className="album-container" onClick={this.albumClick}>
+                                <div className="browse-user-album-container" onClick={this.albumClick}>
                                     <Link to={`/albums/${userAlbum.id}`}>
-                                        <div className="album-image-container">
-                                            <img className="album-image" src={`../images/${userAlbum.coverPictureSrc}`} alt="album cover" />
+                                        <div className="browse-user-album-image-container">
+                                            <img className="browse-user-album-image" src={`../images/${userAlbum.coverPictureSrc}`} alt="album cover" />
                                         </div>
-                                        <div className="album-info-container">
+                                        <div className="browse-user-album-info-container">
                                             <h3>{userAlbum.title}</h3>
                                             <h3>{userAlbum.artist}</h3>
                                         </div>
