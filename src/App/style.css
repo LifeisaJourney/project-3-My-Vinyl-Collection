@@ -26,19 +26,19 @@ body {
     text-align: center;
     margin: 10px auto;
     padding: 15px;
+
 }
-a{
-    text-decoration: none;
-    color: aliceblue
-}
-.link{
+.link-wrapper{
     display: inline;
+}
+
+.link{
     text-decoration: none;
-    color: #E71D36;
+    color: aliceblue;
     font-size: 18px;
 }
 
-a:hover{
+.link:hover{
     color: #FF9F1C;
     font-style: bold;
 }

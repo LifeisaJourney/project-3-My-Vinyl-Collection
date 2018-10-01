@@ -22,18 +22,24 @@ class App extends Component {
           <div className="header-container">
             <h1 className='welcome-screen-title'>My Vinyl Collection</h1>
             <nav className="nav-links">
-              <div className="link">
-                <Link to='/my-collection'>My Collection  </Link>
+              <div className="link-wrapper">
+                <Link 
+                className="link"
+                to='/my-collection'>My Collection  </Link>
                 &nbsp;
                 &nbsp;
             </div>
-              <div className="link">
-                <Link to='/register'>Register </Link>
+              <div className="link-wrapper">
+                <Link 
+                className="link"
+                to='/register'>Register </Link>
                 &nbsp;
                 &nbsp;
             </div>
-              <div className="link">
-                <Link to='/' onClick={this.logOut}>Log out/ Log in </Link>
+              <div className="link-wrapper">
+                <Link 
+                className="link"
+                to='/' onClick={this.logOut}>Log out/ Log in </Link>
               </div>
             </nav>
           </div>
