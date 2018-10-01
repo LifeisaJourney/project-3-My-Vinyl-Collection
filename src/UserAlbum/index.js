@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import AlbumDetails from '../AlbumDetails';
 import "./style.css";
 
 export default class UserAlbum extends Component {
-    albumClick = async(id) => {
-        this.setState ({
+    albumClick = async (id) => {
+        this.setState({
             id: id
         });
     }
@@ -20,10 +21,11 @@ export default class UserAlbum extends Component {
                         <h3>{this.props.albumTitle}</h3>
                         <h3>{this.props.albumArtist}</h3>
                     </div>
-                    <button className='deletion-button' onClick={this.props.onClickDeleteButton}>Delete From Collection</button>
                 </Link>
+                <Route exact path={`/albums/${this.props.id}`}
+                    render={(props) => <AlbumDetails {...props} />} />
+                <button className='deletion-button' onClick={this.props.onClickDeleteButton}>Delete From Collection</button>
             </div>
-
         )
     }
 }   

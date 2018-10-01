@@ -210,6 +210,7 @@ const main = async () => {
     name: "Fred Astair",
     username: "fred",
     passwordDigest: "$2a$12$OL80z0Mhp4ZzTVjKSVzUGu4nlXWksp07fxwApYQX5ASaL0dPjhT/O",
+    pictureSrc: "https://statici.behindthevoiceactors.com/behindthevoiceactors/_img/chars/fred-flintstone-the-man-called-flintstone-24.3.jpg",
     email:"fred@gmail.com",
     city: "New York"
   });

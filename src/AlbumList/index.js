@@ -36,7 +36,6 @@ export default class AlbumList extends Component {
   }
 
   addAlbum = async id => {
-    console.log(id)
     await fetch('api/current-user/albums', {
       method: 'POST',
       body: JSON.stringify({ albumId: id }),

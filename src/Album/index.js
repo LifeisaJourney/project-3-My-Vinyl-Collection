@@ -4,15 +4,10 @@ import AlbumDetails from '../AlbumDetails';
 
 export default class Album extends Component {
 
-  albumClick = async (id) => {
-    this.setState({
-      id: id
-    });
-  }
   render() {
     return (
 
-      <div className="album-container" onClick={this.albumClick}>
+      <div className="album-container" >
         <Link to={`/albums/${this.props.id}`}>
           <div>{this.props.title}</div>
           <div>{this.props.artist}</div>

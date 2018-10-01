@@ -10,8 +10,6 @@ export default class AlbumDetails extends Component {
     }
   }
 
-
-
   componentDidMount = async () => {
     this.fetchAlbum()
   }
@@ -42,15 +40,15 @@ export default class AlbumDetails extends Component {
           <div className="album-release">
             <h2>Release Year</h2>
             <div>{this.state.album.releaseYear}
-          </div>
+            </div>
           </div>
           <div className="album-genre">
             <h2>Genre</h2>
             <div>{this.state.album.genre}</div>
           </div>
-          <div className="album-image">
+          <div className="album-image-container">
             <h2>Cover</h2>
-            <img src={`images/${this.state.album.coverPictureSrc}`}></img>
+            <img className="album-image" src={`../images/${this.state.album.coverPictureSrc}`}></img>
           </div>
           <div className="album-rating">
             <h2>Rating: <span> {this.state.album.rating}</span></h2>
@@ -60,10 +58,9 @@ export default class AlbumDetails extends Component {
             <div>{this.state.album.description}</div>
           </div>
         </div>
-        <UserWithSameTaste 
-        id={this.props.match.params.id}/>
-    </div>
-
-  )
+        <UserWithSameTaste
+          id={this.props.match.params.id} />
+      </div>
+    )
   }
 }
