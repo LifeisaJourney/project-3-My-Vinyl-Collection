@@ -23,6 +23,19 @@ export default class AlbumDetails extends Component {
     })
   }
 
+  calculateRatingStars = () => {
+    const rating = this.state.album.rating;
+
+    let yellowStarString = '';
+ 
+    for (let i = 0; i < rating; i++) {
+      yellowStarString += '⭐️';
+    }
+
+    return yellowStarString;
+  }
+
+
   render() {
 
     return (
@@ -51,7 +64,7 @@ export default class AlbumDetails extends Component {
             <img className="album-image-individual" src={`../images/${this.state.album.coverPictureSrc}`}/>
           </div>
           <div className="album-rating">
-            <h2>Rating: <span> {this.state.album.rating}</span></h2>
+            <h2>Rating: <span> {this.calculateRatingStars()}</span></h2>
           </div>
           <div className="album-description">
             <h2>Description</h2>
