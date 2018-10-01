@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import UserWithSameTaste from '../UserWithSameTaste';
 import { BrowserRouter as Router } from 'react-router-dom';
-
+import "./style.css";
 export default class AlbumDetails extends Component {
   constructor(props) {
     super(props);
@@ -23,12 +23,52 @@ export default class AlbumDetails extends Component {
     })
   }
 
+  calculateRatingStars = () => {
+    const rating = this.state.album.rating;
+
+    let yellowStarString = '';
+ 
+    for (let i = 0; i < rating; i++) {
+      yellowStarString += '⭐️';
+    }
+
+    return yellowStarString;
+  }
+
+  fetchUser = async () => {
+    const response = await fetch('/api/current-user', {
+      headers: {
+        'jwt-token': localStorage.getItem('user-jwt')
+      }
+    })
+    const user = await response.json();
+    this.setState({
+      user: user
+    });
+  }
+
+  AddToCollectionButton = async id => {
+    await fetch('/api/current-user/albums', {
+      method: 'POST',
+      body: JSON.stringify({ albumId: this.state.album.id }),
+      headers: {
+        'Content-Type': 'application/json',
+        'jwt-token': localStorage.getItem('user-jwt')
+      }
+    })
+    this.fetchUser();
+  }
+
   render() {
 
     return (
 
       <div>
         <div className="album-container">
+        <button
+          className="add-album-button"
+          type="button"
+          onClick={this.AddToCollectionButton}>Add To Collection</button>
           <div className="album-tittle">
             <h2>Album Title</h2>
             <div>{this.state.album.title}</div>
@@ -48,10 +88,10 @@ export default class AlbumDetails extends Component {
           </div>
           <div className="album-image-container">
             <h2>Cover</h2>
-            <img className="album-image" src={`../images/${this.state.album.coverPictureSrc}`}></img>
+            <img className="album-image-individual" src={`../images/${this.state.album.coverPictureSrc}`}/>
           </div>
           <div className="album-rating">
-            <h2>Rating: <span> {this.state.album.rating}</span></h2>
+            <h2>Rating: <span> {this.calculateRatingStars()}</span></h2>
           </div>
           <div className="album-description">
             <h2>Description</h2>

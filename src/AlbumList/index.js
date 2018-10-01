@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import Album from "../Album";
+import "./style.css";
 
 export default class AlbumList extends Component {
   constructor(props) {
@@ -17,7 +18,11 @@ export default class AlbumList extends Component {
     this.fetchUser();
   }
   fetchAlbums = async () => {
-    const response = await fetch('api/albums')
+    let url='';
+    if(this.state.title.length>0){
+      url+=`?title=${this.state.title}`
+    }
+    const response = await fetch('/api/albums'+url)
     const albums = await response.json();
     this.setState({
       albums: albums
@@ -32,11 +37,11 @@ export default class AlbumList extends Component {
     const user = await response.json();
     this.setState({
       user: user
-    })
+    });
   }
 
   addAlbum = async id => {
-    await fetch('api/current-user/albums', {
+    await fetch('/api/current-user/albums', {
       method: 'POST',
       body: JSON.stringify({ albumId: id }),
       headers: {
@@ -57,14 +62,23 @@ export default class AlbumList extends Component {
   getAlbum = async(event) => {
     event.preventDefault();
     this.fetchAlbums();
+    this.setState({
+      title:''
+    });
+  }
+
+  getAllAlbums = async(event) => {
+    event.preventDefault();
+    this.fetchAlbums();
   }
 
   render() {
     return (
       <div>
-        <div className="album-list-page">
+        <div className="album-list-page" >
           <h1>Select one of the albums from our list</h1>
-          <form className="album-search-input">
+          <button onClick={this.getAllAlbums}>View Full Album List</button>
+          <form className="album-search-input" onSubmit={this.getAlbum}>
             <label>Search Album By Title: </label>
             <input type='text' name='title' value={this.state.title} placeholder='Album Title' onChange={this.inputChange}></input>
             <button type='button' onClick={this.getAlbum}>Submit</button>

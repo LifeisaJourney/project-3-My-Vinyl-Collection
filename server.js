@@ -4,9 +4,11 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { User, Album, UserAlbums } = require('./models');
 const PORT = process.env.PORT || 5678;
-
 const app = express();
+const path = require('path');
 
+// Static hosting for built files
+app.use("/", express.static("./build/"));
 app.use(bodyParser.json());
 
 const jwtSecret = 'secret189230';
@@ -14,7 +16,15 @@ const jwtSecret = 'secret189230';
 app.get('/api/albums', async (req, res) => {
   let album = {};
   if (req.query.title) {
-    const title = req.query.title.replace('+', ' ');
+    let titleArray = req.query.title.toLowerCase().split(' ');
+    let capitalizedTitleArray=[];
+    for(let i=0; i< titleArray.length; i++){
+     let capitalizedWord= titleArray[i].replace(`${titleArray[i][0]}`, `${titleArray[i][0].toUpperCase()}`);
+     capitalizedTitleArray.push(capitalizedWord);
+    }
+    console.log(capitalizedTitleArray);
+    let title = capitalizedTitleArray.join(' ');
+
     album = {
       where: {
         title: title
@@ -225,6 +235,14 @@ app.get('/api/users/:id/albums', async (req, res) => {
   });
   res.json(userAlbums);
 });
+
+// In production, any request that doesn't match a previous route
+// should send the front-end application, which will handle the route.
+if (process.env.NODE_ENV == "production") {
+  app.get("/*", function(request, response) {
+    response.sendFile(path.join(__dirname, "build", "index.html"));
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`Express server listening on port ${PORT}`);

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./style.css";
 import { Redirect } from 'react-router-dom';
 
 export default class Register extends Component {
@@ -129,38 +130,51 @@ export default class Register extends Component {
     }
 
     return (
-      <div>
-        <form onSubmit={this.register}>
-          <label>Name: </label>
-          <input type='text' placeholder='Name' onChange={this.onInputChange} name='name' value={this.state.name}>
-          </input>
-          <label>Username: </label>
-          <input type='text' placeholder='Username' onChange={this.onInputChange} name='username' value={this.state.username} style={usernameStyle}>
-          </input>
-          <p>{this.state.usernameValidationMessage}</p>
-          <label>Email: </label>
-          <input type='text' placeholder='Email' onChange={this.onInputChange} name='email' value={this.state.email} style={emailStyle}>
-          </input>
-          <p>{this.state.emailValidationMessage}</p>
-          <label>Password: </label>
-          <input type='password' placeholder='Password' onChange={this.onInputChange} name='password' value={this.state.password} style={passwordStyle}>
-          </input>
-          <p>{this.state.passwordValidationMessage}</p>
-          <label>Profile Picture Url</label>
-          <input type='text' onChange={this.onInputChange} name='pictureSrc' value={this.state.pictureSrc}>
-          </input>
-          <label>City: </label>
-          <input type='text' placeholder='City' onChange={this.onInputChange} name='city' value={this.state.city}>
-          </input><br />
+      <div className="register-form">
+        <form className="form" onSubmit={this.register}>
+          <div className="input-container">
+            <label className="register-label">Name: </label>
+            <input type='text' placeholder='Name' onChange={this.onInputChange} name='name' value={this.state.name}>
+            </input>
+          </div>
+          <div className="input-container">
+            <label className="register-label">Username: </label>
+            <input type='text' placeholder='Username' onChange={this.onInputChange} name='username' value={this.state.username} style={usernameStyle}>
+            </input>
+            <p className="error-message">{this.state.usernameValidationMessage}</p>
+          </div>
+          <div className="input-container">
+            <label className="register-label">Email: </label>
+            <input type='text' placeholder='Email' onChange={this.onInputChange} name='email' value={this.state.email} style={emailStyle}>
+            </input>
+            <p className="error-message">{this.state.emailValidationMessage}</p>
+          </div>
+          <div className="input-container">
+            <label className="register-label">Password: </label>
+            <input type='password' placeholder='Password' onChange={this.onInputChange} name='password' value={this.state.password} style={passwordStyle}>
+            </input>
+            <p className="error-message">{this.state.passwordValidationMessage}</p>
+          </div>
+          <div className="input-container">
+            <label className="register-label">Profile Picture Url: </label>
+            <input type='text' onChange={this.onInputChange} name='pictureSrc' value={this.state.pictureSrc}>
+            </input>
+          </div>
+          <div className="input-container">
+            <label className="register-label">City: </label>
+            <input type='text' placeholder='City' onChange={this.onInputChange} name='city' value={this.state.city}>
+            </input>
+          </div>
+          <div>
           {this.state.valid && (
-            <button>Register</button>
+            <button className="register-button">Register</button>
           )}
+          </div>
         </form>
-        
-        {!this.state.valid &&(
-          <button onClick={this.isValid}>Ok</button>
+
+        {!this.state.valid && (
+          <button className="register-button" onClick={this.isValid}>Ok</button>
         )}
-        
         {
           this.state.message &&
           <h3>{this.state.message}</h3>
