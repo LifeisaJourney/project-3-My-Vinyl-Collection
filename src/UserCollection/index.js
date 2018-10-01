@@ -46,15 +46,14 @@ export default class UserCollection extends Component {
     }
 
     deleteAlbum = async (id) => {
-        console.log(id);
-        const deleteAlbum = await (await fetch('/api/current-user/albums', {
+        const deleteAlbum = await fetch('/api/current-user/albums', {
             method: "DELETE",
             body: JSON.stringify({ albumId: id }),
             headers: {
                 'Content-Type': 'application/json',
                 'jwt-token': this.state.isLoggedIn
             }
-        })).json();
+        });
         this.fetchUser();
         this.fetchAlbums();
     }
@@ -79,9 +78,10 @@ export default class UserCollection extends Component {
                             <h2 className='vinyl-collection-h2'>Your Vinyl Collection</h2>
                         </div>
                         {this.state.userAlbums.length > 0 && this.state.userAlbums.map(userAlbum => {
+                            let count=0;
                             return (
                                 <UserAlbum
-                                    key={userAlbum.id}
+                                    key={userAlbum.id-`${count+=1}`}
                                     id={userAlbum.id}
                                     albumImgSrc={userAlbum.coverPictureSrc}
                                     albumTitle={userAlbum.title}
