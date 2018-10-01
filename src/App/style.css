@@ -4,24 +4,34 @@
 
 body {
     font-family: 'Roboto Condensed', sans-serif;
+    color: #011627;
 }
 
-
+.header-container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 .welcome-screen-title {
     font-size: 50px;
     text-decoration: underline;
     text-align: center;
     width: 100%;
     margin: 10px auto;
+    padding: 20px;
+    color: #011627;
 }
 
-a {
+.nav-links {
     text-decoration: none;
-    color: #5386E4;
-}
-
-nav {
+    color: #E71D36;
+    font-size: 18px;
     text-align: center;
     margin: 10px auto;
-} 
+    padding: 15px;
+}
+
+.link:hover{
+    font-size: 22px;
+}
+
 
