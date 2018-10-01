@@ -14,7 +14,15 @@ const jwtSecret = 'secret189230';
 app.get('/api/albums', async (req, res) => {
   let album = {};
   if (req.query.title) {
-    const title = req.query.title.replace('+', ' ');
+    let titleArray = req.query.title.toLowerCase().split(' ');
+    let capitalizedTitleArray=[];
+    for(let i=0; i< titleArray.length; i++){
+     let capitalizedWord= titleArray[i].replace(`${titleArray[i][0]}`, `${titleArray[i][0].toUpperCase()}`);
+     capitalizedTitleArray.push(capitalizedWord);
+    }
+    console.log(capitalizedTitleArray);
+    let title = capitalizedTitleArray.join(' ');
+
     album = {
       where: {
         title: title
