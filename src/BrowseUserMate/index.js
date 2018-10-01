@@ -37,7 +37,7 @@ export default class UserCollection extends Component {
         return (
             <div>
                 <div className="user-collection-container">
-                    <h1 className='personalize-welcome'>Welcome to {this.state.user.name}'s Page!</h1>
+                    <h1 className='personalize-welcome'>Welcome to {this.state.user.name}`\'`s Page!</h1>
                     <div className="user-container">
                         <div className="user-img-container">
                             <img className='user-profile-pic' src={this.state.user.pictureSrc} alt='user-picture' />
