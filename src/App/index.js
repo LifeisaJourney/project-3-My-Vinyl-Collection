@@ -6,7 +6,7 @@ import PrivateRoute from "../PrivateRoute";
 import UserCollection from "../UserCollection";
 import AlbumList from '../AlbumList';
 import AlbumDetails from '../AlbumDetails';
-// import BrowseUserMate from '../BrowseUserMate';
+import BrowseUserMate from '../BrowseUserMate';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 class App extends Component {
@@ -27,13 +27,13 @@ class App extends Component {
             <Link to='/register'>Register </Link>
             &nbsp;
             &nbsp;
-            <Link to='/' onClick={this.logOut}>Log out </Link>
+            <Link to='/' onClick={this.logOut}>Log out/ Log in </Link>
           </nav>
           <Switch>
             <PrivateRoute exact path="/albums" component={AlbumList} />
             <PrivateRoute exact path='/albums/:id' component={AlbumDetails} />
             <PrivateRoute exact path='/my-collection' component={UserCollection} />
-            {/* <PrivateRoute exact path='/users/:id' component={BrowseUserMate} /> */}
+            <PrivateRoute exact path='/users/:id' component={BrowseUserMate} />
             <Route exact path='/' component={Login} />
             <Route exact path='/register' component={Register} />
           </Switch>

@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import BrowseUserMate from '../BrowseUserMate';
 
 export default class UserWithSameTaste extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userMates: []
+      userMates: [],
+      user: {}
     }
   }
   componentDidMount = async () => {
-    this.fetchUserMates()
+    this.fetchUserMates();
+    this.fetchUser();
   }
 
   fetchUserMates = async () => {
@@ -22,35 +24,48 @@ export default class UserWithSameTaste extends Component {
     })
   }
 
+  fetchUser = async () => {
+    const user = await (await fetch('/api/current-user', {
+      method: "GET",
+      headers: {
+        'jwt-token': localStorage.getItem('user-jwt'),
+      }
+    })).json();
+    this.setState({
+      user: user
+    });
+  }
 
   render() {
-
     return (
       <div>
         {this.state.userMates.length > 0 && (
-        <div className="usermate-list-container">
-          <h2>Check out who also owns this album</h2>
-          <div>
-            {this.state.userMates.map(userMate => {
-              return (
-                <div className="usermate-container">
-                  <div className="usermate-name">
-                    {userMate.username}
-                  </div>
-                  <div className="usermate-picture">
-                    <img src={`images/${userMate.pictureSrc}`}></img>
-                  </div>
-                </div>
-              )
-            })}
+          <div className="usermate-list-container">
+            <h2>Check out who also owns this album</h2>
+            <div>
+              {this.state.userMates.map(userMate => {
+                if (userMate.id !== this.state.user.id) {
+                  return (
+                    <div className="usermate-container" key={userMate.id}>
+                      <Link to={`/users/${userMate.id}`}>
+                        <div className="usermate-name">
+                          {userMate.username}
+                        </div>
+                        <div className="usermate-image-container">
+                          <img className="usermate-profile-pic" src={userMate.pictureSrc}></img>
+                        </div>
+                      </Link>
+                      <Route exact path={`/users/${userMate.id}`}
+                        render={(props) => <BrowseUserMate {...props} />} />
+                    </div>
+                  )
+                }
+              })}
+            </div>
+
           </div>
-        </div>
         )}
       </div>
-
-
     )
   }
 }
-
-
