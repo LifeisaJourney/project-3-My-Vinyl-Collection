@@ -19,16 +19,25 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <h1 className='welcome-screen-title'>Welcome to My Vinyl Collection</h1>
-          <nav>
+          <div className="header-container">
+          <h1 className='welcome-screen-title'>My Vinyl Collection</h1>
+          <nav className="nav-links">
+            <span className="link">
             <Link to='/my-collection'>My Collection  </Link>
             &nbsp;
             &nbsp;
+            </span>
+            <span className="link">
             <Link to='/register'>Register </Link>
             &nbsp;
             &nbsp;
+            </span>
+            <span className="link">
             <Link to='/' onClick={this.logOut}>Log out/ Log in </Link>
+            </span>
           </nav>
+          </div>
+          <div className="body-container">
           <Switch>
             <PrivateRoute exact path="/albums" component={AlbumList} />
             <PrivateRoute exact path='/albums/:id' component={AlbumDetails} />
@@ -37,6 +46,7 @@ class App extends Component {
             <Route exact path='/' component={Login} />
             <Route exact path='/register' component={Register} />
           </Switch>
+          </div>
         </div>
       </Router >
     );

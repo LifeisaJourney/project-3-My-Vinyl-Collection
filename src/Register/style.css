@@ -1,0 +1,33 @@
+.register-form {
+  width: 80%;
+  margin: 0 auto;
+  align-content: center;
+}
+
+label {
+  font-size: 15px;
+  padding-left: 10px;
+}
+  
+input[type=text] {
+      color: #BFEDEF;
+      width: 20%;
+      box-sizing: border-box;
+      margin: 8px 0; 
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 12px;
+}
+textarea:focus, input:focus {
+border: 2px solid #011627;
+}
+
+/* .login-button{
+  font-family: 'Roboto Condensed', sans-serif;
+  padding: 0 10px 0 10px;
+  font-size: 12px;
+  background-color: #BFEDEF;
+}
+.login-button:hover{
+  background-color: #011627;
+  color: #BFEDEF
+} */

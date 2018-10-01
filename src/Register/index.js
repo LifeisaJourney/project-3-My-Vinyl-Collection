@@ -129,8 +129,8 @@ export default class Register extends Component {
     }
 
     return (
-      <div>
-        <form onSubmit={this.register}>
+      <div className="register-form">
+        <form  onSubmit={this.register}>
           <label>Name: </label>
           <input type='text' placeholder='Name' onChange={this.onInputChange} name='name' value={this.state.name}>
           </input>
