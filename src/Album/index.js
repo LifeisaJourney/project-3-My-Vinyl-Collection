@@ -10,8 +10,8 @@ export default class Album extends Component {
 
       <div className="album-container" >
         <Link to={`/albums/${this.props.id}`}>
-          <div>{this.props.title}</div>
-          <div>{this.props.artist}</div>
+          <div className='prop-title'>{this.props.title}</div>
+          <div className ='prop-artist'>{this.props.artist}</div>
           <div><img className='album-image-solo' src={`images/${this.props.coverPictureSrc}`}></img></div>
         </Link>
         <Route exact path={`/albums/${this.props.id}`}

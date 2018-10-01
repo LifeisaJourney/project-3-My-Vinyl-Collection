@@ -17,6 +17,16 @@ div {
 
 .album-container{
     margin: 10px auto;
+    font-family: 'Gudea', sans-serif;
+}
+
+.prop-title{
+    font-size:18px;
+    color:#FF9F1C;
+}
+.prop-artist{
+    font-size:17px;
+    color: #011627;
 }
 
 .album-image-solo {
