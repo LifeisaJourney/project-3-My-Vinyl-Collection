@@ -13,10 +13,11 @@ const jwtSecret = 'secret189230';
 
 app.get('/api/albums', async (req, res) => {
   let album = {};
-  if (req.query.albumTitle) {
+  if (req.query.title) {
+    const title = req.query.title.replace('+', ' ');
     album = {
       where: {
-        title: req.query.albumTitle
+        title: title
       }
     }
   }
@@ -44,7 +45,7 @@ app.post('/api/register', async (req, res) => {
       username: username,
       passwordDigest: passwordDigest,
       email: email,
-      pictureSrc: pictureSrc.name,
+      pictureSrc: pictureSrc,
       city: city
     });
 
@@ -198,7 +199,32 @@ app.get('/api/albums/:id/users', async (req, res) => {
     ]
   });
   res.json(albumUsers);
-})
+});
+
+app.get('/api/users/:id', async (req, res) => {
+  const id = req.params.id;
+  const user = await User.findOne({
+    where: {
+      id: id
+    }
+  });
+  res.json(user);
+});
+
+app.get('/api/users/:id/albums', async (req, res) => {
+  const id = req.params.id;
+  const userAlbums = await Album.findAll({
+    include: [
+      {
+        model: User,
+        where: {
+          id: id
+        }
+      }
+    ]
+  });
+  res.json(userAlbums);
+});
 
 app.listen(PORT, () => {
   console.log(`Express server listening on port ${PORT}`);

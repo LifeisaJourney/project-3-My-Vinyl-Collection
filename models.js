@@ -10,7 +10,7 @@ const User = sequelize.define('user', {
   name: Sequelize.TEXT,
   username: Sequelize.TEXT,
   passwordDigest: { type: Sequelize.TEXT, unique: true },
-  pictureSrc: { type: Sequelize.TEXT, defaultValue: 'images/portrait_placeholder.png' },
+  pictureSrc: Sequelize.TEXT,
   email: Sequelize.TEXT,
   city: Sequelize.TEXT
 });
@@ -20,7 +20,7 @@ const Album = sequelize.define('album', {
   artist: Sequelize.TEXT,
   releaseYear: Sequelize.INTEGER,
   genre: Sequelize.TEXT,
-  coverPictureSrc: { type: Sequelize.TEXT, defaultValue: 'images/vinyl-record-placeholder.png' },
+  coverPictureSrc: { type: Sequelize.TEXT, defaultValue: 'vinyl-record-placeholder.png' },
   rating: Sequelize.INTEGER,
   description: Sequelize.TEXT
 });

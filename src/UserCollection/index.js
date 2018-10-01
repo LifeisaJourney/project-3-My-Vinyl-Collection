@@ -10,7 +10,7 @@ export default class UserCollection extends Component {
         const token = localStorage.getItem('user-jwt');
         this.state = {
             isLoggedIn: token,
-            user: '',
+            user: {},
             userAlbums: [],
         }
     }
@@ -82,6 +82,7 @@ export default class UserCollection extends Component {
                             return (
                                 <UserAlbum
                                     key={userAlbum.id}
+                                    id={userAlbum.id}
                                     albumImgSrc={userAlbum.coverPictureSrc}
                                     albumTitle={userAlbum.title}
                                     albumArtist={userAlbum.artist}
@@ -100,4 +101,3 @@ export default class UserCollection extends Component {
         )
     }
 }
-

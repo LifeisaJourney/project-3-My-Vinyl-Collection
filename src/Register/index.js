@@ -65,7 +65,7 @@ export default class Register extends Component {
       emailValidationMessage: emailMessage,
       passwordValidationMessage: passwordMessage
     });
-    return this.state.valid;
+    return this.state.valid
   }
 
   register = async (event) => {
@@ -80,7 +80,6 @@ export default class Register extends Component {
         pictureSrc: this.state.pictureSrc,
         city: this.state.city
       });
-      console.log(requestBody);
 
       const response = await fetch('/api/register', {
         method: 'POST',
@@ -144,20 +143,18 @@ export default class Register extends Component {
           <input type='password' placeholder='Password' onChange={this.onInputChange} name='password' value={this.state.password} style={passwordStyle}>
           </input>
           <p>{this.state.passwordValidationMessage}</p>
-          <label>Profile Picture </label>
-          <input type='file' onChange={this.onInputChange} name='pictureSrc' accept='.png, .jpg, .jpeg' value={this.state.pictureSrc}>
+          <label>Profile Picture Url</label>
+          <input type='text' onChange={this.onInputChange} name='pictureSrc' value={this.state.pictureSrc}>
           </input>
           <label>City: </label>
           <input type='text' placeholder='City' onChange={this.onInputChange} name='city' value={this.state.city}>
-          </input> <br/>
+          </input><br />
           <button>Register</button>
         </form>
-        
         {
           this.state.message &&
           <h3>{this.state.message}</h3>
         }
-
       </div >
     )
   }
