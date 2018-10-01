@@ -57,26 +57,30 @@ export default class Login extends Component {
         <div>
           <div className='home-wrapper'>
             <div className="welcome-container">
-              <h2>Welcome to My Vinil Collection</h2>
+              <h2>Welcome to My Vinyl Collection</h2>
               <h3>Log in or register to start your collection and browse our users albums</h3>
-            <div className="login-container">
-              <div className="form-container">
-                <form onSubmit={this.login}>
-                  <label>User Name: </label>
-                  <input type="text" placeholder='user name' onChange={this.handleChange} name='username' value={this.state.username}></input>
-                  <label>Password: </label>
-                  <input type="password" placeholder='password' onChange={this.handleChange} name='password' value={this.state.password}></input>
-                  <button className="login-button">login</button>
-                </form>
-                {this.state.message &&
-                  <h3>{this.state.message}</h3>}
+              <div className="login-container">
+                <div className="form-container">
+                  <form onSubmit={this.login}>
+                    <div className="form-input">
+                      <label>Username: </label>
+                      <input type="text" placeholder='username' onChange={this.handleChange} name='username' value={this.state.username}></input>
+                    </div>
+                    <div className="form-input">
+                      <label>Password: </label>
+                      <input type="password" placeholder='password' onChange={this.handleChange} name='password' value={this.state.password}></input>
+                    </div>
+                    <button className="login-button">login</button>
+                  </form>
+                  {this.state.message &&
+                    <h3>{this.state.message}</h3>}
+                </div>
               </div>
-              </div>
-              </div>
-              <div className="image-container">
-                <img  className="vinyl-image"src="/images/vinyl-record-mockup.jpg"></img>
-              </div>
-            
+            </div>
+            <div className="image-container">
+              <img className="vinyl-image" src="/images/vinyl-record-mockup.jpg"></img>
+            </div>
+
           </div>
         </div>
 

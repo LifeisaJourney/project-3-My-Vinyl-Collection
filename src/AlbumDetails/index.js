@@ -23,12 +23,52 @@ export default class AlbumDetails extends Component {
     })
   }
 
+  calculateRatingStars = () => {
+    const rating = this.state.album.rating;
+
+    let yellowStarString = '';
+ 
+    for (let i = 0; i < rating; i++) {
+      yellowStarString += '⭐️';
+    }
+
+    return yellowStarString;
+  }
+
+  fetchUser = async () => {
+    const response = await fetch('/api/current-user', {
+      headers: {
+        'jwt-token': localStorage.getItem('user-jwt')
+      }
+    })
+    const user = await response.json();
+    this.setState({
+      user: user
+    });
+  }
+
+  AddToCollectionButton = async id => {
+    await fetch('/api/current-user/albums', {
+      method: 'POST',
+      body: JSON.stringify({ albumId: this.state.album.id }),
+      headers: {
+        'Content-Type': 'application/json',
+        'jwt-token': localStorage.getItem('user-jwt')
+      }
+    })
+    this.fetchUser();
+  }
+
   render() {
 
     return (
 
       <div>
         <div className="album-container-list">
+        <button
+          className="add-album-button"
+          type="button"
+          onClick={this.AddToCollectionButton}>Add To Collection</button>
           <div className='side-panel-1'>
             <div className="album-tittle">
               <h2>Album Title</h2>
@@ -60,6 +100,7 @@ export default class AlbumDetails extends Component {
               <h2>Description</h2>
               <div className='return-input'>{this.state.album.description}</div>
             </div>
+
           </div>
         </div>
         <div className='same-taste'>
