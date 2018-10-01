@@ -64,7 +64,7 @@ export default class Login extends Component {
                   <form onSubmit={this.login}>
                     <div className="form-input">
                       <label>Username: </label>
-                      <input type="text" placeholder='user name' onChange={this.handleChange} name='username' value={this.state.username}></input>
+                      <input type="text" placeholder='username' onChange={this.handleChange} name='username' value={this.state.username}></input>
                     </div>
                     <div className="form-input">
                       <label>Password: </label>
