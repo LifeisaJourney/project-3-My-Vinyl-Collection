@@ -181,7 +181,7 @@ const main = async () => {
     releaseYear: 2015,
     genre: "Pop Rock",
     coverPictureSrc: "tori-kelly.jpg",
-    rating: 8,
+    rating: 4,
     description: `Unbreakable Smile is the debut studio album by American singer Tori Kelly. It was released on June 23, 2015, through Capitol Records and Schoolboy Records. The album was executive produced by Max Martin. The album received generally positive reviews from critics.`
   });
 
@@ -191,7 +191,7 @@ const main = async () => {
     releaseYear: 2015,
     genre: "Electronic",
     coverPictureSrc: "ariana.jpg",
-    rating: 9,
+    rating: 5,
     description: `My Everything is the second studio album by American singer and actress Ariana Grande, released on August 25, 2014 by Republic Records. Grande wanted My Everything to sound as "an evolution" from her debut album, Yours Truly (2013); it explores more mature themes and genres. In the album's production, Ariana worked with a host of producers – including Max Martin, Shellback, Benny Blanco, Ryan Tedder, Darkchild, Ilya Salmanzadeh, Zedd, and David Guetta. Upon its release, the album debuted atop the Billboard 200, selling 169,000 copies in its first week. It debuted at number one in Australia and Canada as well, and peaked in the top ten of twenty countries worldwide. As of April 2018, the album has sold 735,000 copies in the United States.`
   });
 
@@ -202,7 +202,7 @@ const main = async () => {
     releaseYear: 2014,
     genre: "Electronic",
     coverPictureSrc: "taylor-swift.jpg",
-    rating: 10,
+    rating: 5,
     description: `1989 is the fifth studio album by American singer-songwriter Taylor Swift, released on October 27, 2014 through Big Machine Records. Swift began composing the album following the release of her previous studio effort, Red (2012). Over the course of the two-year songwriting period, she collaborated with producers Max Martin and Shellback—Martin served as the album's executive producer alongside Swift. The album's title was named after the singer's birth year and its music was inspired by the pop music of the 1980s.`
   });
 
