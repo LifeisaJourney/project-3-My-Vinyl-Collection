@@ -50,7 +50,7 @@ export default class UserCollection extends Component {
                     </div>
                     <div className="album-collection-container">
                         <div className='vinyl-collection'>
-                            <h2 className='vinyl-collection-h2'>{this.state.user.name}'s Vinyl Collection</h2>
+                            <h2 className='vinyl-collection-h2'>{this.state.user.name}`\'`s Vinyl Collection</h2>
                         </div>
                         {this.state.userAlbums.length > 0 && this.state.userAlbums.map(userAlbum => {
                             return (
