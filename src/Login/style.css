@@ -66,6 +66,7 @@ margin: 15px;
   border-radius: 4px;
   background-color: #FF9F1C;
   width: 20%;
+  cursor: pointer;
 }
 .login-button:hover{
     background-color: #011627;
