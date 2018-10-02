@@ -95,7 +95,7 @@ export default class AlbumList extends Component {
           <form className="album-search-input" onSubmit={this.getAlbum}>
             <label className='album-list-title'>Search Album By Title: </label>
             <input type='text' name='title' value={this.state.title} placeholder='Album Title' onChange={this.inputChange}></input>
-            <button type='button' onClick={this.getAlbum}>Submit</button>
+            <button className="pointer" type='button' onClick={this.getAlbum}>Submit</button>
           </form>
         </div>
         <div className="album-list-container">

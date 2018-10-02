@@ -28,8 +28,13 @@ h1 {
     margin: 5px auto 15px auto;
     text-decoration: none;
     text-decoration-color: none;
+    cursor: pointer;
 }
 
 .album-list-page{
     margin-top: -40px;
+}
+
+.pointer {
+    cursor: pointer;
 }
