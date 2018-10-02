@@ -1,7 +1,9 @@
-.usermate-image-container{
+.usermate-container{
     margin: 0 auto;
-    padding: 10px;
     display: flex;
+    flex-wrap: wrap;
+    padding: 16px 10px 16px;
+    justify-content: space-evenly;  
 }
 .usermate-profile-pic{
     width: 200px;
