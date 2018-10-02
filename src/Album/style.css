@@ -21,8 +21,11 @@ div {
 }
 
 .prop-title{
-    font-size:18px;
+    font-size:17px;
     color:#FF9F1C;
+    word-break:break-word;
+    overflow-wrap: break-word;
+    line-break: normal;
 }
 .prop-artist{
     font-size:17px;

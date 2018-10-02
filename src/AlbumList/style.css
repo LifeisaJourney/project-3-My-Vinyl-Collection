@@ -26,6 +26,8 @@ h1 {
 .view-album-button{
     font-size:20px;
     margin: 5px auto 15px auto;
+    text-decoration: none;
+    text-decoration-color: none;
 }
 
 .album-list-page{
