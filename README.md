@@ -11,7 +11,7 @@
 The UI of the pages to scroll through in the website.
 
 ## Schema Model
-![Schema](https://imgur.com/fUJnOYh.png)
+![Schema](https://imgur.com/a/WjzXdm2.png)
 This is the schema of our database for models.js 
 
 ## Initial Proposal
