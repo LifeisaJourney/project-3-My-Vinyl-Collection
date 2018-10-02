@@ -10,7 +10,8 @@ export default class AlbumList extends Component {
       albums: [],
       user: {},
       title: '',
-      album: {}
+      album: {},
+      albumSearch: false
     }
   }
   componentDidMount = async () => {
@@ -70,13 +71,17 @@ export default class AlbumList extends Component {
     event.preventDefault();
     this.fetchAlbums();
     this.setState({
-      title: ''
+      title: '',
+      albumSearch: true
     });
   }
 
   getAllAlbums = async (event) => {
     event.preventDefault();
     this.fetchAlbums();
+    this.setState({
+      albumSearch: false
+    })
   }
 
   render() {
@@ -84,7 +89,9 @@ export default class AlbumList extends Component {
       <div>
         <div className="album-list-page" >
           <h1 className='select-from-list'>Select one of the albums from our list</h1>
-          <button className ='view-album-button' onClick={this.getAllAlbums}>View Full Album List</button>
+          {this.state.albumSearch && (
+            <button className ='view-album-button' onClick={this.getAllAlbums}>View Full Album List</button>
+          )}
           <form className="album-search-input" onSubmit={this.getAlbum}>
             <label className='album-list-title'>Search Album By Title: </label>
             <input type='text' name='title' value={this.state.title} placeholder='Album Title' onChange={this.inputChange}></input>
