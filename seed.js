@@ -15,13 +15,13 @@ const main = async () => {
   });
 
   const album2 = await Album.create({
-    title: "Ella Fitzgerald Sings The Cole Porter   Songbook",
-    artist: "Ella Fitzgerald",
-    releaseYear: 1956,
-    genre: "Jazz, Stage & Screen",
-    coverPictureSrc: "ella-fitzgerald-sings-cole-porter.jpg",
+    title: "Studio Ghibli",
+    artist: "Various Artists",
+    releaseYear: 1998,
+    genre: "Instrumental",
+    coverPictureSrc: "studio-ghibli.jpg",
     rating: 4,
-    description: "This is one of the best, musically, spiritually, most rewarding records money can buy. Everything is right, at the right time and in the right place."
+    description: `The Ghibli studio has been behind some of the more classic (and cross-culturally recognized) pieces of anime film over the years, from early entries like My Neighbor Totoro and Kiki's Delivery Service up to more modern releases such as Princess Mononoke and Spirited Away. Along the way, they built up a strong following for the music included in the various movies. At the beginning of the album, the songs seem immediately dated, stuck in the children's shows of the 1970s. Indeed, that was the original intent and the mood is clearly more child-based and the music more simplistic. As the album moves along, the music becomes somewhat more mature, developing as the market for the films themselves developed.`
   });
 
   const album3 = await Album.create({
@@ -196,7 +196,6 @@ const main = async () => {
   });
 
   const album20 = await Album.create({
-
     title: "1989",
     artist: "Taylor Swift",
     releaseYear: 2014,
@@ -204,6 +203,66 @@ const main = async () => {
     coverPictureSrc: "taylor-swift.jpg",
     rating: 5,
     description: `1989 is the fifth studio album by American singer-songwriter Taylor Swift, released on October 27, 2014 through Big Machine Records. Swift began composing the album following the release of her previous studio effort, Red (2012). Over the course of the two-year songwriting period, she collaborated with producers Max Martin and Shellback—Martin served as the album's executive producer alongside Swift. The album's title was named after the singer's birth year and its music was inspired by the pop music of the 1980s.`
+  });
+
+  const album21 = await Album.create({
+    title: "Naruto Shippuden OST",
+    artist: "Yasuharu Takanashi",
+    releaseYear: 2009,
+    genre: "Pop",
+    coverPictureSrc: "naruto-ost.jpg",
+    rating: 9,
+    description: `The Best OST for this series`
+  });
+
+  const album22 = await Album.create({
+    title: "Resonable Doubt",
+    artist: "Jay-Z",
+    releaseYear: 1996,
+    genre:"Hip Hop / Rap",
+    coverPictureSrc:"jay-z.jpg",
+    rating: 4,
+    description: `Before Jay-Z fashioned himself into hip-hop's most notorious capitalist, he was a street hustler from the projects who rapped about what he knew -- and was very, very good at it. Skeptics who've never cared for Jigga's crossover efforts should turn to his debut, Reasonable Doubt, as the deserving source of his legend. Reasonable Doubt is often compared to another New York landmark, Nas' Illmatic: A hungry young MC with a substantial underground buzz drops an instant classic of a debut, detailing his experiences on the streets with disarming honesty, and writing some of the most acrobatic rhymes heard in quite some time. (Plus, neither artist has since approached the street cred of his debut, The Blueprint notwithstanding.) Parts of the persona that Jay-Z would ride to superstardom are already in place: He's cocky bordering on arrogant, but playful and witty, and exudes an effortless, unaffected cool throughout. And even if he's rapping about rising to the top instead of being there, his material obsessions are already apparent.`
+    });
+  
+  const album23 = await Album.create({
+    title: "Globalization",
+    artist: "Pitbull",
+    releaseYear: 2014,
+    genre: "Pop",
+    coverPictureSrc: "pitbull.jpg",
+    rating: 6,
+    description: `The world is my block/The globe is my home" barks Miami rapper Pitbull on his eighth album Globalization, an ironic title as it infers the icky idea of a worldwide cultural homogenization. Pitbull's homogenish mix of pop, dance, hip-hop, reggaeton, and etc. would be the perfect setup if one wanted to make the whole world sing in perfect harmony, but his cleverness, his charisma, and his infectious material always kept him firmly in the category of "genuine," at least up to this point.`
+  });
+
+  const album24 = await Album.create({
+    title: "Ready to Die",
+    artist: "Notorious B.I.G.",
+    releaseYear: 1996,
+    genre:"Hip Hop / Rap",
+    coverPictureSrc:"big.jpg",
+    rating: 4,
+    description: `The album that reinvented East Coast rap for the gangsta age, Ready to Die made the Notorious B.I.G. a star, and vaulted Sean "Puffy" Combs' Bad Boy label into the spotlight as well. Today it's recognized as one of the greatest hardcore rap albums ever recorded, and that's mostly due to Biggie's skill as a storyteller. His raps are easy to understand, but his skills are hardly lacking -- he has a loose, easy flow and a talent for piling multiple rhymes on top of one another in quick succession. He's blessed with a flair for the dramatic, and slips in and out of different contradictory characters with ease. Yet, no matter how much he heightens things for effect, it's always easy to see elements of Biggie in his narrators and of his own experience in the details; everything is firmly rooted in reality, but plays like scenes from a movie`
+    });
+
+    const album25 = await Album.create({
+      title: `Illmatic`,
+      artist: `Nas`,
+      releaseYear: 1994,
+      genre: `Hip Hop / Rap`,
+      coverPictureSrc:`nas.jpg`,
+      rating: 5,
+      description: `Often cited as one of the best hip-hop albums of the ‘90s, Illmatic is the undisputed classic upon which Nas’ reputation rests. It helped spearhead the artistic renaissance of New York hip-hop in the post-Chronic era, leading a return to street aesthetics. Yet even if Illmatic marks the beginning of a shift away from Native Tongues-inspired alternative rap, it’s strongly rooted in that sensibility. For one, Nasemploys some of the most sophisticated jazz-rap producers around: Q-Tip, Pete Rock, DJ Premier, and Large Professor, who underpin their intricate loops with appropriately tough beats. But more importantly, Nas takes his place as one of hip-hop’s greatest street poets -- his rhymes are highly literate, his raps superbly fluid regardless of the size of his vocabulary. He’s able to evoke the bleak reality of ghetto life without losing hope or forgetting the good times, which become all the more precious when any day could be your last. As a narrator, he doesn’t get too caught up in the darker side of life -- he’s simply describing what he sees in the world around him, and trying to live it up while he can. He’s thoughtful but ambitious, announcing on “N.Y. State of Mind” that “I never sleep, ’cause sleep is the cousin of death,” and that he’s “out for dead presidents to represent me” on “The World Is Yours.” Elsewhere, he flexes his storytelling muscles on the classic cuts “Life’s a Bitch” and “One Love,” the latter a detailed report to a close friend in prison about how allegiances within their group have shifted. Hip-hop fans accustomed to 73-minute opuses sometimes complain about Illmatic’s brevity, but even if it leaves you wanting more, it’s also one of the few ’90s rap albums with absolutely no wasted space. Illmatic reveals a great lyricist in top form meeting great production, and it remains a perennial favorite among serious hip-hop fans.`
+      });
+
+  const album26 = await Album.create({
+    title: "Ella Fitzgerald Sings The Cole Porter Songbook",
+    artist: "Ella Fitzgerald",
+    releaseYear: 1956,
+    genre: "Jazz, Stage & Screen",
+    coverPictureSrc: "ella-fitzgerald-sings-cole-porter.jpg",
+    rating: 4,
+    description: "This is one of the best, musically, spiritually, most rewarding records money can buy. Everything is right, at the right time and in the right place."
   });
 
   const fred = await User.create({
