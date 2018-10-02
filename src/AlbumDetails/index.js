@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import UserWithSameTaste from '../UserWithSameTaste';
-import { BrowserRouter as Router } from 'react-router-dom';
+import AlbumList from '../AlbumList';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import "./style.css";
+
 export default class AlbumDetails extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +15,7 @@ export default class AlbumDetails extends Component {
   componentDidMount = async () => {
     this.scrollToTop();
     this.fetchAlbum();
-    
+
   }
 
   fetchAlbum = async () => {
@@ -26,14 +28,14 @@ export default class AlbumDetails extends Component {
   }
 
   scrollToTop = () => {
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   }
 
   calculateRatingStars = () => {
     const rating = this.state.album.rating;
 
     let yellowStarString = '';
- 
+
     for (let i = 0; i < rating; i++) {
       yellowStarString += '⭐️';
     }
@@ -71,10 +73,12 @@ export default class AlbumDetails extends Component {
 
       <div>
         <div className="album-container-list">
-        <button
-          className="add-album-button"
-          type="button"
-          onClick={this.AddToCollectionButton}>Add To Collection</button>
+          <button
+            className="add-album-button"
+            type="button"
+            onClick={this.AddToCollectionButton}>Add To Collection</button>
+          <button className='to-albumlist-button'><Link to='/albums'>View Full Album List</Link></button>
+          <Route exact path="/albums" component={AlbumList} />
           <div className='side-panel-1'>
             <div className="album-tittle">
               <h2>Album Title</h2>
