@@ -42,7 +42,7 @@ export default class UserWithSameTaste extends Component {
         {this.state.userMates.length > 0 && (
           <div className="usermate-list-container">
             <h2>Check out who also owns this album</h2>
-            <div>
+            <div className='user-same-taste-list'>
               {this.state.userMates.map(userMate => {
                 if (userMate.id !== this.state.user.id) {
                   return (
