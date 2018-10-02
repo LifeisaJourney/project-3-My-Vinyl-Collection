@@ -78,6 +78,7 @@ text-align: center;
 
 .deletion-button {
     font-size: 12px;
+    cursor: pointer;
 }
 
 .album-info-container {
