@@ -7,7 +7,7 @@ h1 {
 .album-list-container {
     display: flex;
     flex-wrap: wrap;
-    padding: 16px 10px 16px;
+    padding: 16px 10px 16px 10px;
     justify-content: space-evenly;  
 }
 
@@ -26,6 +26,8 @@ h1 {
 .view-album-button{
     font-size:20px;
     margin: 5px auto 15px auto;
+    text-decoration: none;
+    text-decoration-color: none;
 }
 
 .album-list-page{

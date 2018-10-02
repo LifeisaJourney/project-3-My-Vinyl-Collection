@@ -77,43 +77,43 @@ export default class AlbumDetails extends Component {
             className="add-album-button"
             type="button"
             onClick={this.AddToCollectionButton}>Add To Collection</button>
-          <button className='to-albumlist-button'><Link to='/albums'>View Full Album List</Link></button>
+          <button className='button-album-container' ><Link className='to-albumlist-button' to='/albums'>View Full Album List</Link></button>
           <Route exact path="/albums" component={AlbumList} />
           <div className='side-panel-1'>
-            <div className="album-tittle">
-              <h2>Album Title</h2>
+            <div className="a1 album-title">
+              <h2 className='desc-h2'>Album Title</h2>
               <div className='return-input'>{this.state.album.title}</div>
             </div>
-            <div className="album-artist">
-              <h2>Artist</h2>
+            <div className="a1 album-artist">
+              <h2 className='desc-h2'>Artist</h2>
               <div className='return-input'>{this.state.album.artist}</div>
             </div>
-            <div className="album-release">
-              <h2>Release Year</h2>
+            <div className="a1 album-release">
+              <h2 className='desc-h2'>Release Year</h2>
               <div className='return-input'>{this.state.album.releaseYear}
               </div>
             </div>
-            <div className="album-genre">
-              <h2>Genre</h2>
+            <div className="a1 album-genre">
+              <h2 className='desc-h2'>Genre</h2>
               <div className='return-input'>{this.state.album.genre}</div>
             </div>
           </div>
           <div className='side-panel-2'>
-            <div className="album-image-container">
-              <h2>Cover</h2>
+            <div className="a1 album-image-container">
+              <h2 className='desc-h2'>Cover</h2>
               <img className="album-image-individual" src={`../images/${this.state.album.coverPictureSrc}`} />
             </div>
             <div className="album-rating">
-              <h2 className='return-input'>Rating: <span> {this.calculateRatingStars()}</span></h2>
+              <h2 className='return-input-desc-h2'>Rating: <span className='rating-starz'> {this.calculateRatingStars()}</span></h2>
             </div>
             <div className="album-description">
-              <h2>Description</h2>
-              <div className='return-input'>{this.state.album.description}</div>
+              <h2 className='desc-h2'>Description</h2>
+              <div className='return-input-description'>{this.state.album.description}</div>
             </div>
 
           </div>
         </div>
-        <div className='same-taste'>
+        <div className='same-taste desc-h2'>
           <UserWithSameTaste
             id={this.props.match.params.id} />
         </div>

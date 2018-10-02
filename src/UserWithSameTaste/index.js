@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import BrowseUserMate from '../BrowseUserMate';
-
+import "./style.css";
 export default class UserWithSameTaste extends Component {
   constructor(props) {
     super(props);
