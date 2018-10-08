@@ -50,7 +50,7 @@ class App extends Component {
               <PrivateRoute exact path='/albums/:id' component={AlbumDetails} />
               <PrivateRoute exact path='/my-collection' component={UserCollection} />
               <PrivateRoute exact path='/users/:id' component={BrowseUserMate} />
-              <PrivateRoute exact path='/current-user' component={UpdateUser} />
+              <PrivateRoute exact path='/current-user/update' component={UpdateUser} />
               <Route exact path='/' component={Login} />
               <Route exact path='/register' component={Register} />
             </Switch>
