@@ -50,12 +50,12 @@ export default class Register extends Component {
     if (!emailRegex.exec(this.state.email)) {
       isValid = false;
       emailRedBorder = 'solid 2px red';
-      emailMessage = 'Email address not valid!';
+      emailMessage = 'Email address is invalid!';
     }
     if (this.state.password.length < 7 || !specialCharacterPattern.exec(this.state.password) || !numberPattern.exec(this.state.password)) {
       isValid = false;
       passwordRedBorder = 'solid 2px red';
-      passwordMessage = 'Password not valid! Password must be at least 7 characters long and include at least one number and one special character';
+      passwordMessage = 'Password is invalid! Password must be at least 7 characters long and include at least one number and one special character';
     }
     this.setState({
       valid: isValid,
@@ -134,34 +134,40 @@ export default class Register extends Component {
         <form className="form" onSubmit={this.register}>
           <div className="input-container">
             <label className="register-label">Name: </label>
+            <br/>
             <input type='text' placeholder='Name' onChange={this.onInputChange} name='name' value={this.state.name}>
             </input>
           </div>
           <div className="input-container">
             <label className="register-label">Username: </label>
+            <br/>
             <input type='text' placeholder='Username' onChange={this.onInputChange} name='username' value={this.state.username} style={usernameStyle}>
             </input>
             <p className="error-message">{this.state.usernameValidationMessage}</p>
           </div>
           <div className="input-container">
             <label className="register-label">Email: </label>
+            <br/>
             <input type='text' placeholder='Email' onChange={this.onInputChange} name='email' value={this.state.email} style={emailStyle}>
             </input>
             <p className="error-message">{this.state.emailValidationMessage}</p>
           </div>
           <div className="input-container">
             <label className="register-label">Password: </label>
+            <br/>
             <input type='password' placeholder='Password' onChange={this.onInputChange} name='password' value={this.state.password} style={passwordStyle}>
             </input>
             <p className="error-message">{this.state.passwordValidationMessage}</p>
           </div>
           <div className="input-container">
-            <label className="register-label">Profile Picture Url: </label>
-            <input type='text' onChange={this.onInputChange} name='pictureSrc' value={this.state.pictureSrc}>
+            <label className="register-label">Profile Picture URL: </label>
+            <br/>
+            <input type='text' placeholder='URL' onChange={this.onInputChange} name='pictureSrc' value={this.state.pictureSrc}>
             </input>
           </div>
           <div className="input-container">
             <label className="register-label">City: </label>
+            <br/>
             <input type='text' placeholder='City' onChange={this.onInputChange} name='city' value={this.state.city}>
             </input>
           </div>
