@@ -1,0 +1,21 @@
+.album-image{
+    height:200px;
+    width:200px;
+    margin:10px;
+    border: #A8D0FF solid;
+    border-radius: 3px;  
+}
+
+.album-container {
+text-align: center;
+}
+
+.deletion-button {
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.album-info-container {
+    font-size-adjust: 12px;
+    size: 100px;
+}
