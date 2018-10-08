@@ -37,8 +37,11 @@
     display: flex;
 }
 
+.update-profile-button {
+    font-size: 12px;
+}
 
-h2 {
+.user-info h2 {
     margin: 0;
     padding:10px;
 }
@@ -64,24 +67,7 @@ h2 {
     width:100%;
 }
 
-.album-image{
-    height:200px;
-    width:200px;
-    margin:10px;
-    border: #A8D0FF solid;
-    border-radius: 3px;  
-}
-
-.album-container {
-text-align: center;
-}
-
-.deletion-button {
+.addition-button {
     font-size: 12px;
-    cursor: pointer;
 }
 
-.album-info-container {
-    font-size-adjust: 12px;
-    size: 100px;
-}

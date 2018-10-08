@@ -72,6 +72,7 @@ export default class UserCollection extends Component {
                             <h2>Email: {this.state.user.email}</h2>
                             <h2>City: {this.state.user.city}</h2>
                         </div>
+                        <button className='update-profile-button'><Link to='/current-user/update'>Update Your Profile</Link></button>
                     </div>
                     <div className="album-collection-container">
                         <div className='vinyl-collection'>
