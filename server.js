@@ -109,6 +109,34 @@ app.get('/api/current-user', async (req, res) => {
   res.json(user);
 });
 
+app.put('/api/current-user', async(req,res) => {
+  const { password, name, email, pictureSrc, city } = req.body;
+
+  const token = req.headers['jwt-token'];
+  let tokenData;
+  try {
+    tokenData = jwt.verify(token, jwtSecret);
+  } catch (e) {
+    console.log(e);
+  }
+  const user = await User.findOne({
+    where: {
+      id: tokenData.userId
+    }
+  });
+
+  const passwordDigest = await bcrypt.hash(password, 12);
+
+  user.passwordDigest = passwordDigest;
+  user.name = name;
+  user.email = email;
+  user.pictureSrc = pictureSrc;
+  user.city = city;
+  await user.save();
+
+  res.sendStatus(200);
+});
+
 app.post('/api/current-user/albums', async (req, res) => {
   const token = req.headers['jwt-token'];
 
