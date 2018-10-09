@@ -69,5 +69,11 @@
 
 .addition-button {
     font-size: 12px;
+    text-decoration: none;
+}
+
+.addition-link, .update-link {
+    text-decoration: none;
+    color: #000000;
 }
 

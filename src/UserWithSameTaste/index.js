@@ -47,9 +47,9 @@ export default class UserWithSameTaste extends Component {
                 if (userMate.id !== this.state.user.id) {
                   return (
                     <div className="usermate-container" key={userMate.id}>
-                      <Link to={`/users/${userMate.id}`}>
+                      <Link className="usermate-link" to={`/users/${userMate.id}`}>
                         <div className="usermate-name">
-                          {userMate.username}
+                          {userMate.username.toUpperCase()}
                         </div>
                         <div className="usermate-image-container">
                           <img className="usermate-profile-pic" src={userMate.pictureSrc}></img>

@@ -2,16 +2,15 @@
   width: 50%;
   margin: 15px auto;
   text-align: center;
-
 }
+
 .form{
   text-align: left;
 }
 
-.register-label{
+.register-label {
   width: 100%;
   font-size: 16px;
-  display: inline;
   font-weight: bolder
 }
   
@@ -21,7 +20,9 @@ input[type=text][type=password]{
   text-align: left;
   resize: vertical;
   color: black;
+  outline: none;
 }
+
 .input-container{
   padding-top: 7px;
   padding-bottom: 10px;
@@ -36,10 +37,9 @@ input[type=text][type=password]{
   font-size: 14px;
   border-radius: 4px;
   background-color: #FF9F1C;
-
   cursor: pointer;
   text-align: center;
-
+  outline: none;
 }
 .register-button:hover{
   background-color: #011627;
@@ -48,6 +48,6 @@ input[type=text][type=password]{
 
 .error-message{
   padding-left: 10px;
-  text-align:center;
+  text-align: center;
   margin: 0 auto;
 }

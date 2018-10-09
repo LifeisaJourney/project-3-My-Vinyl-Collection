@@ -16,6 +16,7 @@ h1 {
 }
 .album-search-input{
     font-family: 'Gudea', sans-serif;
+    outline: none;
 }
 
 .album-list-title{

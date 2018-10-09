@@ -18,8 +18,8 @@ export default class UserAlbum extends Component {
                         <img className="album-image" src={`images/${this.props.albumImgSrc}`} alt="album cover" />
                     </div>
                     <div className="album-info-container">
-                        <h3>{this.props.albumTitle}</h3>
-                        <h3>{this.props.albumArtist}</h3>
+                        <div className="album-title-div">{this.props.albumTitle}</div>
+                        <div className="album-artist-div">{this.props.albumArtist}</div>
                     </div>
                 </Link>
                 <Route exact path={`/albums/${this.props.id}`}
