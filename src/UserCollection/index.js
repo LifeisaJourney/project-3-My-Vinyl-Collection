@@ -63,6 +63,9 @@ export default class UserCollection extends Component {
             <div>
                 <div className="user-collection-container">
                     <h1 className='personalize-welcome'>Welcome {this.state.user.name}!</h1>
+                    <div>
+                        <button className='update-profile-button'><Link className='update-link' to='/my-collection/update'>Update Your Profile</Link></button>
+                    </div>
                     <div className="user-container">
                         <div className="user-img-container">
                             <img className='user-profile-pic' src={this.state.user.pictureSrc} alt='user-picture' />
@@ -71,18 +74,18 @@ export default class UserCollection extends Component {
                             <h2>User Name: {this.state.user.username}</h2>
                             <h2>Email: {this.state.user.email}</h2>
                             <h2>City: {this.state.user.city}</h2>
+                           
                         </div>
-                        <button className='update-profile-button'><Link to='/my-collection/update'>Update Your Profile</Link></button>
                     </div>
                     <div className="album-collection-container">
                         <div className='vinyl-collection'>
                             <h2 className='vinyl-collection-h2'>Your Vinyl Collection</h2>
                         </div>
                         {this.state.userAlbums.length > 0 && this.state.userAlbums.map(userAlbum => {
-                            let count=0;
+                            let count = 0;
                             return (
                                 <UserAlbum
-                                    key={userAlbum.id-`${count+=1}`}
+                                    key={userAlbum.id - `${count += 1}`}
                                     id={userAlbum.id}
                                     albumImgSrc={userAlbum.coverPictureSrc}
                                     albumTitle={userAlbum.title}
@@ -94,7 +97,7 @@ export default class UserCollection extends Component {
                         )}
                     </div>
                     <div className='add-button-div'>
-                        <button className='addition-button'> <Link to='/albums'>Add New Album</Link></button>
+                        <button className='addition-button'> <Link className='addition-link' to='/albums'>Add New Album</Link></button>
                     </div>
                 </div>
                 <Route exact path="/albums" component={AlbumList} />

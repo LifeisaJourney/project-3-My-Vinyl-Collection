@@ -7,7 +7,7 @@
 }
 
 .album-container {
-text-align: center;
+    text-align: center;
 }
 
 .deletion-button {
@@ -18,4 +18,17 @@ text-align: center;
 .album-info-container {
     font-size-adjust: 12px;
     size: 100px;
+}
+
+.album-title-div {
+    font-size:17px;
+    color:#FF9F1C;
+    word-break:break-word;
+    overflow-wrap: break-word;
+    line-break: normal;
+}
+
+.album-artist-div {
+    font-size:17px;
+    color: #011627;
 }

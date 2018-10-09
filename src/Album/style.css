@@ -2,14 +2,6 @@
     box-sizing:border-box;
 }
 
-/* .album-container-detail-page{
-    height:200px;
-    width:200px;
-    border: #A8D0FF solid;
-    margin: 0 auto;
-    display:block;
-} */
-
 div {
     text-align: center;
     padding: 3px 0 3px 0;
@@ -45,5 +37,4 @@ div {
 .add-album-button{
     font-size: 12px;
     cursor: pointer;
-    
 }

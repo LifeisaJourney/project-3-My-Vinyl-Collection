@@ -17,10 +17,10 @@ app.get('/api/albums', async (req, res) => {
   let album = {};
   if (req.query.title) {
     let titleArray = req.query.title.toLowerCase().split(' ');
-    let capitalizedTitleArray=[];
-    for(let i=0; i< titleArray.length; i++){
-     let capitalizedWord= titleArray[i].replace(`${titleArray[i][0]}`, `${titleArray[i][0].toUpperCase()}`);
-     capitalizedTitleArray.push(capitalizedWord);
+    let capitalizedTitleArray = [];
+    for (let i = 0; i < titleArray.length; i++) {
+      let capitalizedWord = titleArray[i].replace(`${titleArray[i][0]}`, `${titleArray[i][0].toUpperCase()}`);
+      capitalizedTitleArray.push(capitalizedWord);
     }
     console.log(capitalizedTitleArray);
     let title = capitalizedTitleArray.join(' ');
@@ -109,7 +109,7 @@ app.get('/api/current-user', async (req, res) => {
   res.json(user);
 });
 
-app.put('/api/current-user', async(req,res) => {
+app.put('/api/current-user', async (req, res) => {
   const { password, name, email, pictureSrc, city } = req.body;
 
   const token = req.headers['jwt-token'];
@@ -125,13 +125,27 @@ app.put('/api/current-user', async(req,res) => {
     }
   });
 
-  const passwordDigest = await bcrypt.hash(password, 12);
+  if (password) {
+    const passwordDigest = await bcrypt.hash(password, 12);
+    user.passwordDigest = passwordDigest;
+  }
 
-  user.passwordDigest = passwordDigest;
-  user.name = name;
-  user.email = email;
-  user.pictureSrc = pictureSrc;
-  user.city = city;
+  if (name) {
+    user.name = name;
+  }
+
+  if (email) {
+    user.email = email;
+  }
+
+  if (pictureSrc) {
+    user.pictureSrc = pictureSrc;
+  }
+
+  if (city) {
+    user.city = city;
+  }
+
   await user.save();
 
   res.sendStatus(200);
@@ -267,7 +281,7 @@ app.get('/api/users/:id/albums', async (req, res) => {
 // In production, any request that doesn't match a previous route
 // should send the front-end application, which will handle the route.
 if (process.env.NODE_ENV == "production") {
-  app.get("/*", function(request, response) {
+  app.get("/*", function (request, response) {
     response.sendFile(path.join(__dirname, "build", "index.html"));
   });
 }
